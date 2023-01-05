@@ -17,3 +17,8 @@ The aim is to provide the user with new entertainment content for whenever they 
 - Random Movie Suggestion List
 - Movie Detail Screen
 - Movie Reviews + Star Rating
+
+## Stretch Goals
+
+- Allow User to write reviews / rate film
+- Video Player for Movie Trailers
