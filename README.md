@@ -22,3 +22,13 @@ The aim is to provide the user with new entertainment content for whenever they 
 
 - Allow User to write reviews / rate film
 - Video Player for Movie Trailers
+
+# Domain Model
+
+’’’mermaid
+erDiagram
+USER --- FAVOURITE
+USER --- USERFILMS
+USERFILMS --- DETAILS
+USERFILMS --- REVIEWS
+’’’
