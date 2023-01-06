@@ -23,7 +23,7 @@ The aim is to provide the user with new entertainment content for whenever they 
 - Allow User to write reviews / rate film
 - Video Player for Movie Trailers
 
-# Domain Model
+## Domain Model
 
 ```mermaid
 flowchart TD
@@ -34,4 +34,52 @@ flowchart TD
  FILM --- DETAILS 
  FILM --- REVIEWS 
  DETAILS --- CAST
+```
+
+# Entity Relationship Diagram
+
+```mermaid
+erDiagram 
+ user ||--o{ favourite_Film_List : ""
+ user ||--o{ suggestion_Film_List : ""
+ favourite_Film_List ||--o{ film : ""
+ suggestion_Film_List ||--o{ film : ""
+ film ||--o{ film_Review : ""
+ film ||--o{ actor : ""
+ 
+ user {
+        serial id PK
+        varchar email_address
+        varchar user_name
+        varchar password
+        date date_of_birth
+        timestamp created
+    }
+ favourite_Film_List {
+                 serial film_id FK
+              }
+ suggestion_Film_List {
+                  serial fild_id FK
+               }
+ film {
+      serial film_id PK
+      varchar film_name
+      varchar film_description
+      timestamp film_release_date
+      serial film_rating
+      array actor
+      array review
+      image film_image
+      }
+ film_Review {
+             serial review_id PK
+             serial film_id FK
+             varchar review_description
+             varchar review_user
+           }
+ actor {
+       serial actor_id PK
+       varchar actor_name
+       image actor_image
+     }
 ```
