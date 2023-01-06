@@ -65,6 +65,7 @@ erDiagram
       serial film_id PK
       varchar film_name
       varchar film_description
+      varchar film_genre
       timestamp film_release_date
       serial film_rating
       array actor
