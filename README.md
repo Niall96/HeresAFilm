@@ -33,4 +33,5 @@ flowchart TD
  SUGGESTION --- FILM
  FILM --- DETAILS 
  FILM --- REVIEWS 
+ DETAILS --- CAST
 ```
