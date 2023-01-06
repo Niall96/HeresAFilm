@@ -26,9 +26,11 @@ The aim is to provide the user with new entertainment content for whenever they 
 # Domain Model
 
 ```mermaid
-erDiagram
- USER --- FAVOURITE : ""
- USER --- USERFILMS : ""
- USERFILMS --- DETAILS : ""
- USERFILMS --- REVIEWS : ""
+flowchart TD
+ USER --- FAVOURITE 
+ USER --- USERFILMS 
+ FAVOURITE --- FILM
+ USERFILMS --- FILM
+ FILM --- DETAILS 
+ FILM --- REVIEWS 
 ```
