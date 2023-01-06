@@ -40,8 +40,8 @@ flowchart TD
 
 ```mermaid
 erDiagram 
- user ||--o{ favourite_Film_List : ""
- user ||--o{ suggestion_Film_List : ""
+ user ||--|| favourite_Film_List : ""
+ user ||--|| suggestion_Film_List : ""
  favourite_Film_List ||--o{ film : ""
  suggestion_Film_List ||--o{ film : ""
  film ||--o{ film_Review : ""
