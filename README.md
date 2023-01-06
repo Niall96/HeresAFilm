@@ -28,9 +28,9 @@ The aim is to provide the user with new entertainment content for whenever they 
 ```mermaid
 flowchart TD
  USER --- FAVOURITE 
- USER --- USERFILMS 
+ USER --- SUGGESTION 
  FAVOURITE --- FILM
- USERFILMS --- FILM
+ SUGGESTION --- FILM
  FILM --- DETAILS 
  FILM --- REVIEWS 
 ```
