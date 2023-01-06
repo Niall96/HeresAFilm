@@ -27,8 +27,8 @@ The aim is to provide the user with new entertainment content for whenever they 
 
 ```mermaid
 erDiagram
- USER ||--o{ FAVOURITE : ""
- USER ||--o{ USERFILMS : ""
- USERFILMS ||--o{ DETAILS : ""
- USERFILMS ||--o{ REVIEWS : ""
+ USER --- FAVOURITE : ""
+ USER --- USERFILMS : ""
+ USERFILMS --- DETAILS : ""
+ USERFILMS --- REVIEWS : ""
 ```
