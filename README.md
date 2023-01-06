@@ -30,23 +30,29 @@ The aim is to provide the user with new entertainment content for whenever they 
 flowchart 
  USER --- FAVOURITE_LIST
  USER --- SUGGESTION_LIST
+ USER --- WATCHED_LIST
  FAVOURITE_LIST --- FILM
+ WATCHED_LIST --- FILM
  SUGGESTION_LIST --- FILM
  FILM --- DETAILS 
- FILM --- REVIEWS 
+ FILM --- REVIEWS
  DETAILS --- ACTORS
+ USER --- REVIEWS
 ```
 
 # Entity Relationship Diagram
 
 ```mermaid
 erDiagram 
- user ||--|| favourite_Film_List : ""
- user ||--|| suggestion_Film_List : ""
- favourite_Film_List ||--o{ film : ""
- suggestion_Film_List ||--o{ film : ""
- film ||--o{ film_Review : ""
+ user ||--|| favourite_film_list : ""
+ user ||--|| suggestion_film_list : ""
+ user ||--|| watched_film_list: ""
+ favourite_film_list ||--o{ film : ""
+ watched_film_list ||--o{ film : ""
+ suggestion_film_list ||--o{ film : ""
+ film ||--o{ film_review : ""
  film ||--o{ actor : ""
+ user ||--o{ film_review : ""
  
  user {
         serial id PK
@@ -56,11 +62,15 @@ erDiagram
         date date_of_birth
         timestamp created
     }
- favourite_Film_List {
+ favourite_film_list {
                  serial user_id FK
                  array film_id
               }
- suggestion_Film_List {
+ watched_film_list {
+                 serial user_id FK
+                 array film_id
+              }
+ suggestion_film_list {
                   serial user_id FK
                   array film_id
                }
@@ -75,11 +85,12 @@ erDiagram
       array review
       image film_image
       }
- film_Review {
+ film_review {
              serial review_id PK
              serial film_id FK
+             varchar user_id FK
              varchar review_description
-             varchar review_user
+             serial review_rating
            }
  actor {
        serial actor_id PK
