@@ -21,19 +21,20 @@ The aim is to provide the user with new entertainment content for whenever they 
 ## Stretch Goals
 
 - Allow User to write reviews / rate film
+- Create a watched list so user's don't see repeated suggestions
 - Video Player for Movie Trailers
 
 ## Domain Model
 
 ```mermaid
-flowchart TD
- USER --- FAVOURITE LIST
- USER --- SUGGESTION LIST
- FAVOURITE --- FILM
- SUGGESTION --- FILM
+flowchart 
+ USER --- FAVOURITE_LIST
+ USER --- SUGGESTION_LIST
+ FAVOURITE_LIST --- FILM
+ SUGGESTION_LIST --- FILM
  FILM --- DETAILS 
  FILM --- REVIEWS 
- DETAILS --- CAST
+ DETAILS --- ACTORS
 ```
 
 # Entity Relationship Diagram
@@ -56,10 +57,12 @@ erDiagram
         timestamp created
     }
  favourite_Film_List {
-                 serial film_id FK
+                 serial user_id FK
+                 array film_id
               }
  suggestion_Film_List {
-                  serial fild_id FK
+                  serial user_id FK
+                  array film_id
                }
  film {
       serial film_id PK
