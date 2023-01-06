@@ -25,10 +25,10 @@ The aim is to provide the user with new entertainment content for whenever they 
 
 # Domain Model
 
-‘‘‘mermaid
+```mermaid
 erDiagram
  USER ||--o{ FAVOURITE : ""
  USER ||--o{ USERFILMS : ""
  USERFILMS ||--o{ DETAILS : ""
  USERFILMS ||--o{ REVIEWS : ""
-‘‘‘
+```
