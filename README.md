@@ -43,14 +43,14 @@ flowchart
 
 ```mermaid
 erDiagram 
- user ||--|| favourite_film_list : ""
- user ||--|| suggestion_film_list : ""
- user ||--|| watched_film_list: ""
- favourite_film_list ||--o{ film : ""
- watched_film_list ||--o{ film : ""
- suggestion_film_list ||--o{ film : ""
+ user ||--|| user_film_favourite_list : ""
+ user ||--|| user_film_suggestion_list : ""
+ user ||--|| user_film_watched_list: ""
+ user_film_favourite_list ||--o{ film : ""
+ user_film_watched_list ||--o{ film : ""
+ user_film_suggestion_list ||--o{ film : ""
  film ||--o{ film_review : ""
- film ||--o{ actor : ""
+ film ||--o{ film_actor : ""
  user ||--o{ film_review : ""
  
  user {
