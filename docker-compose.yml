@@ -2,7 +2,7 @@ version: "3.4"
 services:
   db:
     image: postgres:14-bullseye
-    container_name: <application_name>_db
+    container_name: heresafilm_db
     restart: always
     ports:
       - "5432:5432"
@@ -14,4 +14,4 @@ services:
       - db:/var/lib/postgresql/data
 volumes:
   db:
-    name: <application_name>_db
+    name: heresafilm_db
