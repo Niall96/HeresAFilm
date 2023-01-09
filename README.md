@@ -83,14 +83,15 @@ erDiagram
       image image_location
       }
  film_review {
-             serial review_id PK
+             serial id PK
              int film_id FK
              varchar user_id FK
              varchar description
              double rating
            }
  film_actor {
-       serial actor_id PK
+       serial id PK
+       int film_id FK
        varchar actor_name
        image actor_image
      }
