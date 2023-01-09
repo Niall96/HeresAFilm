@@ -36,7 +36,6 @@ flowchart
  SUGGESTION_LIST --- FILM
  FILM --- DETAILS 
  FILM --- REVIEWS
- DETAILS --- ACTORS
  USER --- REVIEWS
 ```
 
@@ -62,37 +61,35 @@ erDiagram
         date date_of_birth
         timestamp created
     }
- favourite_film_list {
-                 serial user_id FK
-                 array film_id
+ user_film_favourite_list {
+                 int user_id FK
+                 array film_id FK
               }
- watched_film_list {
-                 serial user_id FK
-                 array film_id
+ user_film_watched_list {
+                 int user_id FK
+                 array film_id FK
               }
- suggestion_film_list {
-                  serial user_id FK
-                  array film_id
+ user_film_suggestion_list {
+                  int user_id FK
+                  array film_id FK
                }
  film {
-      serial film_id PK
-      varchar film_name
-      varchar film_description
-      varchar film_genre
-      timestamp film_release_date
-      serial film_rating
-      array actor
-      array review
-      image film_image
+      serial id PK
+      varchar name
+      varchar description
+      varchar genre
+      timestamp release_date
+      double rating
+      image image_location
       }
  film_review {
              serial review_id PK
-             serial film_id FK
+             int film_id FK
              varchar user_id FK
-             varchar review_description
-             serial review_rating
+             varchar description
+             double rating
            }
- actor {
+ film_actor {
        serial actor_id PK
        varchar actor_name
        image actor_image
