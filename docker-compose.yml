@@ -14,7 +14,7 @@ services:
       - db:/var/lib/postgresql/data
   flyway:
     image: flyway/flyway:9-alpine
-    container_name: trackvg_flyway
+    container_name: heresafilm_flyway
     command: -url=jdbc:postgresql://db/postgres -schemas=public -user=user
       -password=password -connectRetries=5 migrate
     volumes:
