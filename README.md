@@ -96,3 +96,218 @@ erDiagram
        image actor_image
      }
 ```
+# API Specification
+
+#### USERS
+`GET /users`
+Return a list of all users
+
+```json
+[
+  {
+    "id": 1,
+    "email_address": "user@email.com",
+    "user_name": "username",
+    "date_of_birth": "0000-00-00"
+  },
+  {
+    "id": 2,
+    "email_address": "user@email.com",
+    "user_name": "username",
+    "date_of_birth": "0000-00-00"
+  }
+]
+```
+Response - '200 Created'
+---
+`GET /users/{id}`
+Return a user
+
+```json
+  {
+    "id": 1,
+    "email_address": "user@email.com",
+    "user_name": "username",
+    "date_of_birth": "0000-00-00"
+  }
+```
+Response - '200 Created'
+---
+`POST /users`
+Create a user
+
+Request
+```json
+{
+    "email_address": "user@email.com",
+    "user_name": "username",
+    "password": "password",
+    "date_of_birth": "0000-00-00",
+    "created": "2022-12-12 14:29:20.012024"
+}
+```
+Response - `201 Created`
+---
+`GET /users/{id}/reviews`
+Return user's reviews
+
+```json
+{
+"film_id": 1,
+"film_name": "FILM",
+"rating": 8.5,
+"description": "Great movie"
+}
+```
+Response - `200 success`
+---
+`GET /users/films/{id}/favourites`
+Return user's reviews
+
+```json
+[{
+"film_id": 1,
+"film_name": "FILM",
+"rating": 8.5,
+"description": "Great movie"
+}]
+```
+Response - `200 success`
+---
+`GET /users/films/{id}/suggestions`
+Return user's suggestion list
+
+```json
+[{
+"film_id": 1,
+"film_name": "FILM",
+"rating": 8.5,
+"synopsis": "Great movie"
+}]
+```
+Response - `200 success`
+---
+`GET /users/films/{id}/watched`
+Return user's watched list
+
+```json
+[{
+"film_id": 1
+}]
+```
+Response - `200 success`
+---
+`POST /users/films/{id}/favourites`
+Creates user's favourite film list
+
+```json
+{
+"film_id": [1,2,3]
+}
+```
+Response - `201 success`
+---
+`PUT /users/films/{id}/favourites`
+Updates user's favourite film list
+
+```json
+{
+"film_id": [1,2,3]
+}
+```
+Response - `201 success`
+---
+
+#### FILMS
+'PUT /films/{id}'
+Add a film to the film table
+```json
+{
+ "name": "film name"
+ "description": "This is a movie"
+ "genre": "Action"
+ "release_date": "0000-00-00"
+ "rating": 8.5
+ "image_location": "www.google.com"
+ "tmdb_id" : 1111
+}
+```
+Response - `201 success`
+---
+
+'GET /films/{id}'
+Retrieve film 
+```json
+{
+ "name": "film name"
+ "description": "This is a movie"
+ "genre": "Action"
+ "release_date": "0000-00-00"
+ "rating": 8.5
+ "image_location": "www.google.com"
+ "tmdb_id" : 100
+}
+```
+Response - `200 success`
+---
+
+### ACTORS
+'GET /actors/{film_id}'
+retrieve the actors of specific film
+```json 
+[{
+"id": 1,
+"name": "Chuck Norris",
+"image": "www.googleImages.com",
+"tmdb_id": 500
+},{
+"id": 5,
+"name": "Keanu Reeves",
+"image": "www.googleImages.com"
+"tmdb_id": 4313
+}]
+```
+Response - `200 success`
+---
+
+### REVIEWS
+'GET /films/{id}/reviews'
+retrieve the reviews of specific film
+```json 
+[{
+"user_id": 2,
+"film_name": "FILM",
+"rating": 4.0,
+"description": "Terrible"
+},{
+"user_id": 1,
+"film_name": "FILM",
+"rating": 8.5,
+"description": "Great movie"
+}]
+```
+Response - `200 success`
+---
+
+'POST /films/{id}/reviews'
+create a review for specific film
+```json 
+{
+"user_id": 2,
+"film_name": "FILM",
+"rating": 4.0,
+"description": "Terrible"
+}
+```
+Response - `200 success`
+---
+
+'DELETE /films/{id}/reviews'
+deletes a review for a film
+```json 
+{
+"user_id": 2
+}
+```
+Response - `200 success`
+---
