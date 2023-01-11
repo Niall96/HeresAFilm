@@ -81,6 +81,7 @@ erDiagram
       timestamp release_date
       double rating
       image image_location
+      int tmdb_id
       }
  film_review {
              serial id PK
@@ -94,6 +95,7 @@ erDiagram
        int film_id FK
        varchar actor_name
        image actor_image
+       int tmdb_id
      }
 ```
 # API Specification
@@ -219,7 +221,7 @@ Response - `201 success`
 ---
 
 #### FILMS
-'PUT /films/{id}'
+`PUT /films/{id}`
 Add a film to the film table
 ```json
 {
@@ -235,7 +237,7 @@ Add a film to the film table
 Response - `201 success`
 ---
 
-'GET /films/{id}'
+`GET /films/{id}`
 Retrieve film 
 ```json
 {
@@ -252,7 +254,7 @@ Response - `200 success`
 ---
 
 ### ACTORS
-'GET /actors/{film_id}'
+`GET /actors/{film_id}`
 retrieve the actors of specific film
 ```json 
 [{
@@ -271,7 +273,7 @@ Response - `200 success`
 ---
 
 ### REVIEWS
-'GET /films/{id}/reviews'
+`GET /films/{id}/reviews`
 retrieve the reviews of specific film
 ```json 
 [{
@@ -289,7 +291,7 @@ retrieve the reviews of specific film
 Response - `200 success`
 ---
 
-'POST /films/{id}/reviews'
+`POST /films/{id}/reviews`
 create a review for specific film
 ```json 
 {
@@ -302,7 +304,7 @@ create a review for specific film
 Response - `200 success`
 ---
 
-'DELETE /films/{id}/reviews'
+`DELETE /films/{id}/reviews`
 deletes a review for a film
 ```json 
 {
