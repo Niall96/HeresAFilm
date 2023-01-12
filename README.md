@@ -176,7 +176,7 @@ erDiagram
 ```
 #### Response: `200 success`
 ---
-`GET /users/{id}films_favourites`
+`GET /users/{id}films-favourites`
 #### Return user's reviews
 
 ```json
@@ -189,7 +189,7 @@ erDiagram
 ```
 #### Response: `200 success`
 ---
-`GET /users/{id}/films_suggestions`
+`GET /users/{id}/films-suggestions`
 #### Return user's suggestion list
 
 ```json
@@ -202,7 +202,7 @@ erDiagram
 ```
 #### Response: `200 success`
 ---
-`GET /users/{id}/films_watched`
+`GET /users/{id}/films-watched`
 #### Return user's watched list
 
 ```json
@@ -212,7 +212,7 @@ erDiagram
 ```
 #### Response: `200 success`
 ---
-`POST /users/{id}/films_favourites`
+`POST /users/{id}/films-favourites`
 #### Creates user's favourite film list
 
 ```json
@@ -222,7 +222,7 @@ erDiagram
 ```
 #### Response: `201 Created`
 ---
-`PUT /users/{id}/films_favourites`
+`PUT /users/{id}/films-favourites`
 #### Updates user's favourite film list
 
 ```json
