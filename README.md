@@ -51,6 +51,7 @@ erDiagram
  user_film_suggestion_list ||--o{ film : ""
  film ||--o{ film_review : ""
  film ||--o{ film_actor : ""
+ film_actor ||--o{ actor : ""
  user ||--o{ film_review : ""
  
  user {
@@ -91,6 +92,11 @@ erDiagram
              double rating
            }
  film_actor {
+       
+       int film_id FK
+       array actor_id FK
+     }
+ actor {
        serial id PK
        int film_id FK
        varchar actor_name
@@ -170,7 +176,7 @@ erDiagram
 ```
 #### Response: `200 success`
 ---
-`GET /users/films/{id}/favourites`
+`GET /users/{id}films_favourites`
 #### Return user's reviews
 
 ```json
@@ -183,7 +189,7 @@ erDiagram
 ```
 #### Response: `200 success`
 ---
-`GET /users/films/{id}/suggestions`
+`GET /users/{id}/films_suggestions`
 #### Return user's suggestion list
 
 ```json
@@ -196,7 +202,7 @@ erDiagram
 ```
 #### Response: `200 success`
 ---
-`GET /users/films/{id}/watched`
+`GET /users/{id}/films_watched`
 #### Return user's watched list
 
 ```json
@@ -206,7 +212,7 @@ erDiagram
 ```
 #### Response: `200 success`
 ---
-`POST /users/films/{id}/favourites`
+`POST /users/{id}/films_favourites`
 #### Creates user's favourite film list
 
 ```json
@@ -216,7 +222,7 @@ erDiagram
 ```
 #### Response: `201 Created`
 ---
-`PUT /users/films/{id}/favourites`
+`PUT /users/{id}/films_favourites`
 #### Updates user's favourite film list
 
 ```json
@@ -228,7 +234,7 @@ erDiagram
 ---
 
 #### FILMS
-`PUT /films/{id}`
+`POST /films/{id}`
 #### Add a film to the film table
 ```json
 {
@@ -241,7 +247,7 @@ erDiagram
  "tmdb_id" : 1111
 }
 ```
-#### Response: `200 success`
+#### Response: `201 Created`
 ---
 
 `GET /films/{id}`
