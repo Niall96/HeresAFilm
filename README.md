@@ -120,7 +120,7 @@ erDiagram
   }
 ]
 ```
-#### Response: '200 Created'
+#### Response: `200 Success`
 ---
 `GET /users/{id}`
 #### Return a user
@@ -133,7 +133,7 @@ erDiagram
     "date_of_birth": "0000-00-00"
   }
 ```
-#### Response: '200 Created'
+#### Response: `200 Success`
 ---
 `POST /users`
 #### Create a user
@@ -155,7 +155,7 @@ erDiagram
 {
 }
 ```
-#### Response: `204 success`
+#### Response: `204 No Content`
 ---
 `GET /users/{id}/reviews`
 #### Return user's reviews
@@ -214,7 +214,7 @@ erDiagram
 "film_id": [1,2,3]
 }
 ```
-#### Response: `201 success`
+#### Response: `201 Created`
 ---
 `PUT /users/films/{id}/favourites`
 #### Updates user's favourite film list
@@ -241,7 +241,7 @@ erDiagram
  "tmdb_id" : 1111
 }
 ```
-#### Response: `201 success`
+#### Response: `200 success`
 ---
 
 `GET /films/{id}`
@@ -308,7 +308,7 @@ erDiagram
 "description": "Terrible"
 }
 ```
-#### Response: `200 success`
+#### Response: `201 Created`
 ---
 
 `DELETE /user/reviews/{id}`
@@ -317,5 +317,5 @@ erDiagram
 {
 }
 ```
-#### Response: `204 success`
+#### Response: `204 No Content`
 ---
