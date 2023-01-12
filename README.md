@@ -150,6 +150,14 @@ Request
 ```
 Response - `201 Created`
 ---
+`DELETE /user/{id}`
+Deletes User
+```json 
+{
+}
+```
+Response - `204 success`
+---
 `GET /users/{id}/reviews`
 Return user's reviews
 
@@ -304,12 +312,11 @@ create a review for specific film
 Response - `200 success`
 ---
 
-`DELETE /films/{id}/reviews`
+`DELETE /user/reviews/{id}`
 deletes a review for a film
 ```json 
 {
-"user_id": 2
 }
 ```
-Response - `200 success`
+Response - `204 success`
 ---
