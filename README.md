@@ -102,7 +102,7 @@ erDiagram
 
 #### USERS
 `GET /users`
-Return a list of all users
+#### Return a list of all users
 
 ```json
 [
@@ -120,10 +120,10 @@ Return a list of all users
   }
 ]
 ```
-Response - '200 Created'
+#### Response: '200 Created'
 ---
 `GET /users/{id}`
-Return a user
+#### Return a user
 
 ```json
   {
@@ -133,12 +133,11 @@ Return a user
     "date_of_birth": "0000-00-00"
   }
 ```
-Response - '200 Created'
+#### Response: '200 Created'
 ---
 `POST /users`
-Create a user
+#### Create a user
 
-Request
 ```json
 {
     "email_address": "user@email.com",
@@ -148,18 +147,18 @@ Request
     "created": "2022-12-12 14:29:20.012024"
 }
 ```
-Response - `201 Created`
+#### Response: `201 Created`
 ---
 `DELETE /user/{id}`
-Deletes User
+#### Deletes User
 ```json 
 {
 }
 ```
-Response - `204 success`
+#### Response: `204 success`
 ---
 `GET /users/{id}/reviews`
-Return user's reviews
+#### Return user's reviews
 
 ```json
 {
@@ -169,10 +168,10 @@ Return user's reviews
 "description": "Great movie"
 }
 ```
-Response - `200 success`
+#### Response: `200 success`
 ---
 `GET /users/films/{id}/favourites`
-Return user's reviews
+#### Return user's reviews
 
 ```json
 [{
@@ -182,10 +181,10 @@ Return user's reviews
 "description": "Great movie"
 }]
 ```
-Response - `200 success`
+#### Response: `200 success`
 ---
 `GET /users/films/{id}/suggestions`
-Return user's suggestion list
+#### Return user's suggestion list
 
 ```json
 [{
@@ -195,42 +194,42 @@ Return user's suggestion list
 "synopsis": "Great movie"
 }]
 ```
-Response - `200 success`
+#### Response: `200 success`
 ---
 `GET /users/films/{id}/watched`
-Return user's watched list
+#### Return user's watched list
 
 ```json
 [{
 "film_id": 1
 }]
 ```
-Response - `200 success`
+#### Response: `200 success`
 ---
 `POST /users/films/{id}/favourites`
-Creates user's favourite film list
+#### Creates user's favourite film list
 
 ```json
 {
 "film_id": [1,2,3]
 }
 ```
-Response - `201 success`
+#### Response: `201 success`
 ---
 `PUT /users/films/{id}/favourites`
-Updates user's favourite film list
+#### Updates user's favourite film list
 
 ```json
 {
 "film_id": [1,2,3]
 }
 ```
-Response - `201 success`
+#### Response: `201 success`
 ---
 
 #### FILMS
 `PUT /films/{id}`
-Add a film to the film table
+#### Add a film to the film table
 ```json
 {
  "name": "film name"
@@ -242,11 +241,11 @@ Add a film to the film table
  "tmdb_id" : 1111
 }
 ```
-Response - `201 success`
+#### Response: `201 success`
 ---
 
 `GET /films/{id}`
-Retrieve film 
+#### Retrieve film 
 ```json
 {
  "name": "film name"
@@ -258,12 +257,12 @@ Retrieve film
  "tmdb_id" : 100
 }
 ```
-Response - `200 success`
+#### Response: `200 success`
 ---
 
 ### ACTORS
 `GET /actors/{film_id}`
-retrieve the actors of specific film
+#### Retrieve the actors of specific film
 ```json 
 [{
 "id": 1,
@@ -277,12 +276,12 @@ retrieve the actors of specific film
 "tmdb_id": 4313
 }]
 ```
-Response - `200 success`
+#### Response: `200 success`
 ---
 
 ### REVIEWS
 `GET /films/{id}/reviews`
-retrieve the reviews of specific film
+#### Retrieve the reviews of specific film
 ```json 
 [{
 "user_id": 2,
@@ -296,11 +295,11 @@ retrieve the reviews of specific film
 "description": "Great movie"
 }]
 ```
-Response - `200 success`
+#### Response: `200 success`
 ---
 
 `POST /films/{id}/reviews`
-create a review for specific film
+#### Create a review for specific film
 ```json 
 {
 "user_id": 2,
@@ -309,14 +308,14 @@ create a review for specific film
 "description": "Terrible"
 }
 ```
-Response - `200 success`
+#### Response: `200 success`
 ---
 
 `DELETE /user/reviews/{id}`
-deletes a review for a film
+#### Deletes a review for a film
 ```json 
 {
 }
 ```
-Response - `204 success`
+#### Response: `204 success`
 ---
