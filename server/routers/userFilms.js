@@ -79,7 +79,7 @@ UserFilms.post("/", (req, res) => {
 
 /**
  * @swagger
- * /userFilms/{user_id}:
+ * /userFilms/{id}:
  *   patch:
  *     tags: [
  *       userFilms
