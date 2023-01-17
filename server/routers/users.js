@@ -131,6 +131,20 @@ Users.delete("/:userId(\\d+)", function (req, res) {
  *       users
  *     ]
  *     summary: Returns list of films by specified status
+ *     operationId: getFilmList
+ *     parameters:
+ *       - name: status
+ *         in: query
+ *         description: Is the film considered a favourite
+ *         required: false
+ *         explode: true
+ *         schema:
+ *           type: string
+ *           default: watched
+ *           enum:
+ *             - watched
+ *             - watchlist
+ *             - favorite
  *     responses:
  *       200:
  *         description: OK

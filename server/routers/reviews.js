@@ -115,7 +115,7 @@ Reviews.post("/", function (req, res) {
 });
 /**
  * @swagger
- * /reviews/{user_id}/{film_id}}:
+ * /reviews/{film_id}/{user_id}:
  *   delete:
  *     tags: [
  *       reviews
@@ -133,8 +133,8 @@ Reviews.post("/", function (req, res) {
  *       204:
  *         description: No content
  */
-Reviews.delete("/:reviewId(\\d+)", function (req, res) {
-  const { reviewId } = req.params;
-  console.log("${reviewId} deleted");
+Reviews.delete("/:film_id(\\d+)/:user_id(\\d+)", function (req, res) {
+  const { film_id, user_id } = req.params;
+  console.log("review deleted");
 });
 module.exports = Reviews;
