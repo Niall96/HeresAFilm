@@ -56,8 +56,8 @@ erDiagram
     }
  user_films {
                  int user_id FK
-                 int film_id FK
-                 string status
+                 array film_id FK
+                 array status
               }
  film {
       serial id PK
