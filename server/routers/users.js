@@ -123,71 +123,37 @@ Users.delete("/:userId(\\d+)", function (req, res) {
   console.log("${userId} deleted");
 });
 
-Users.get("/:user_id(\\d+)/film_favourites", (req, res) => {
-  const { user_id } = req.params;
+/**
+ * @swagger
+ * /users/{id}/getFilmList:
+ *   get:
+ *     tags: [
+ *       users
+ *     ]
+ *     summary: Returns list of films by specified status
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             examples:
+ *               jsonObject:
+ *                 summary: An example JSON response
+ *                 value: '[{ "id": 1, "name": "Some Items", "key": "SI" }, { "id": 2, "summary": "More Items", "key": "MI" }]'
+ *       204:
+ *         description: No content
+ */
+Users.get("/:user_id(\\d+)/getFilmList", function (req, res) {
+  const { user_id, status } = req.params;
   res.status(200).json([
     {
       film_id: 1,
       film_name: "FILM",
       rating: 8.5,
       description: "Great movie",
+      status: "Favourite",
     },
   ]);
 });
 
-Users.post("/film_favourites", (req, res) => {
-  const { film_id_array } = req.body;
-  console.log("film_ids:", film_id_array);
-  res.sendStatus(201);
-});
-
-Users.put("/film_favourites", (req, res) => {
-  const { film_id_array } = req.body;
-  console.log("film_ids:", film_id_array);
-  res.sendStatus(200);
-});
-
-Users.get("/:user_id(\\d+)/film_watched", (req, res) => {
-  const { user_id } = req.params;
-  res.status(200).json([
-    {
-      film_id: 1,
-      film_name: "FILM",
-      rating: 8.5,
-      description: "Great movie",
-    },
-  ]);
-});
-
-Users.post("/film_watched", (req, res) => {
-  const { film_id_array } = req.body;
-  console.log("film_ids:", film_id_array);
-  res.sendStatus(201);
-});
-
-Users.put("/film_watched", (req, res) => {
-  const { film_id_array } = req.body;
-  console.log("film_ids:", film_id_array);
-  res.sendStatus(200);
-});
-
-Users.get("/:user_id(\\d+)/film_suggestions", (req, res) => {
-  const { user_id } = req.params;
-  res.status(200).json([
-    {
-      film_id: 1,
-      film_name: "FILM",
-      rating: 8.5,
-      description: "Great movie",
-    },
-  ]);
-});
-
-Users.post("/film_suggestions", (req, res) => {
-  const { film_id_array } = req.body;
-  console.log("film_ids:", film_id_array);
-  res.sendStatus(201);
-});
-
-Users.delete("/film_suggestions", (req, res) => {});
 module.exports = Users;
