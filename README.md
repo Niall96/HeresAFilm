@@ -28,12 +28,8 @@ The aim is to provide the user with new entertainment content for whenever they 
 
 ```mermaid
 flowchart 
- USER --- FAVOURITE_LIST
- USER --- SUGGESTION_LIST
- USER --- WATCHED_LIST
- FAVOURITE_LIST --- FILM
- WATCHED_LIST --- FILM
- SUGGESTION_LIST --- FILM
+ USER --- USERFILMS
+ USERFILMS --- FILM
  FILM --- DETAILS 
  FILM --- REVIEWS
  USER --- REVIEWS
@@ -43,12 +39,8 @@ flowchart
 
 ```mermaid
 erDiagram 
- user ||--|| user_film_favourite_list : ""
- user ||--|| user_film_suggestion_list : ""
- user ||--|| user_film_watched_list: ""
- user_film_favourite_list ||--o{ film : ""
- user_film_watched_list ||--o{ film : ""
- user_film_suggestion_list ||--o{ film : ""
+ user ||--|| user_films : ""
+ user_films ||--o{ film : ""
  film ||--o{ film_review : ""
  film ||--o{ film_actor : ""
  film_actor ||--o{ actor : ""
@@ -62,18 +54,11 @@ erDiagram
         date date_of_birth
         timestamp created
     }
- user_film_favourite_list {
+ user_films {
                  int user_id FK
-                 array film_id FK
+                 int film_id FK
+                 string status
               }
- user_film_watched_list {
-                 int user_id FK
-                 array film_id FK
-              }
- user_film_suggestion_list {
-                  int user_id FK
-                  array film_id FK
-               }
  film {
       serial id PK
       varchar name
@@ -176,8 +161,8 @@ erDiagram
 ```
 #### Response: `200 success`
 ---
-`GET /users/{id}films-favourites`
-#### Return user's reviews
+`GET /users/{id}/getFilms`
+#### Return user's films based on query - watched/ watchlist/ favourite
 
 ```json
 [{
@@ -185,52 +170,21 @@ erDiagram
 "film_name": "FILM",
 "rating": 8.5,
 "description": "Great movie"
+"status": "watched"
 }]
 ```
 #### Response: `200 success`
 ---
-`GET /users/{id}/films-suggestions`
-#### Return user's suggestion list
+`PUT /users/{id}/userfilms`
+#### Updates user's film list
 
 ```json
-[{
+{
 "film_id": 1,
-"film_name": "FILM",
-"rating": 8.5,
-"synopsis": "Great movie"
-}]
-```
-#### Response: `200 success`
----
-`GET /users/{id}/films-watched`
-#### Return user's watched list
-
-```json
-[{
-"film_id": 1
-}]
-```
-#### Response: `200 success`
----
-`POST /users/{id}/films-favourites`
-#### Creates user's favourite film list
-
-```json
-{
-"film_id": [1,2,3]
+"status": "watched"
 }
 ```
-#### Response: `201 Created`
----
-`PUT /users/{id}/films-favourites`
-#### Updates user's favourite film list
-
-```json
-{
-"film_id": [1,2,3]
-}
-```
-#### Response: `201 success`
+#### Response: `200 success`
 ---
 
 #### FILMS
