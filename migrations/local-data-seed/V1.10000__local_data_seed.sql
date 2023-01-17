@@ -8,14 +8,6 @@ INSERT INTO public.film_review (id, film_id, user_id, description, rating) VALUE
 (3, 9, 1, 'This movie is nostalgia, I watch it every year', 8.5),
 (4, 6, 1, 'A good film to fall asleep to, boring', 5.0);
 
-INSERT INTO public.user_film_favourite_list (user_id, film_id) VALUES 
-(1, array[2,1,10]),
-(2, array[7,8,9]);
-
-INSERT INTO public.user_film_watched_list (user_id, film_id) VALUES 
-(1, array[3,5,6,2,1,10]),
-(2, array[7,8,9]);
-
-INSERT INTO public.user_film_suggestion_list (user_id, film_id) VALUES  
-(1, array[7,8,9]),
-(2, array[2,10,4,5]);
+INSERT INTO public.user_films (user_id, film) VALUES 
+(1, '{{1,1}, {2,2}, {4,3}, {5,1}, {3,2}, {8,1}}'),
+(2, '{{1,3}, {9,2}, {4,3}, {8,1}, {3,2}, {8,1}}');

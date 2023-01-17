@@ -41,20 +41,8 @@ CONSTRAINT film_id FOREIGN KEY (film_id) REFERENCES film (id),
 actor_id int ARRAY
 );
 
-CREATE TABLE IF NOT EXISTS user_film_suggestion_list(
+CREATE TABLE IF NOT EXISTS user_films(
 user_id int, 
 CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES users (id),
-film_id int ARRAY
-);
-
-CREATE TABLE IF NOT EXISTS user_film_watched_list(
-user_id int, 
-CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES users (id),
-film_id int ARRAY
-);
-
-CREATE TABLE IF NOT EXISTS user_film_favourite_list(
-user_id int, 
-CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES users (id),
-film_id int ARRAY
+film int [][] 
 );
