@@ -161,7 +161,7 @@ erDiagram
 ```
 #### Response: `200 success`
 ---
-`GET /users/{id}/getFilms`
+`GET /users/{id}/films`
 #### Return user's films based on query - watched/ watchlist/ favourite
 
 ```json
@@ -175,7 +175,7 @@ erDiagram
 ```
 #### Response: `200 success`
 ---
-`PUT /users/{id}/userfilms`
+`PATCH /users/{id}/films`
 #### Updates user's film list
 
 ```json
@@ -203,7 +203,21 @@ erDiagram
 ```
 #### Response: `201 Created`
 ---
-
+`GET /films`
+#### Retrieve film list
+```json
+{
+ "name": "film name"
+ "description": "This is a movie"
+ "genre": "Action"
+ "release_date": "0000-00-00"
+ "rating": 8.5
+ "image_location": "www.google.com"
+ "tmdb_id" : 100
+}
+```
+#### Response: `200 success`
+---
 `GET /films/{id}`
 #### Retrieve film 
 ```json
@@ -258,7 +272,7 @@ erDiagram
 #### Response: `200 success`
 ---
 
-`POST /films/{id}/reviews`
+`POST /reviews/{id}`
 #### Create a review for specific film
 ```json 
 {
