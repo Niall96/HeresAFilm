@@ -1,12 +1,7 @@
 const express = require("express");
 const swaggerUI = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
-const {
-  FilmsRouter,
-  ReviewsRouter,
-  UsersRouter,
-  UserFilmsRouter,
-} = require("./routers");
+const { FilmsRouter, ReviewsRouter, UsersRouter } = require("./routers");
 const app = express();
 /* configure Swagger */
 const swaggerDefinition = {
@@ -32,5 +27,4 @@ app.use("/swagger.json", (req, res) =>
 app.use("/users", UsersRouter);
 app.use("/films", FilmsRouter);
 app.use("/reviews", ReviewsRouter);
-app.use("/userFilms", UserFilmsRouter);
 app.listen(3000);
