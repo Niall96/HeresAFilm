@@ -2,6 +2,7 @@ const { Router } = require("express");
 const { check, validationResult, body } = require("express-validator");
 
 function validate(req, res, next) {
+  console.log(req.body);
   const error = validationResult(req);
   const hasError = !error.isEmpty();
 
@@ -29,7 +30,7 @@ const Users = Router();
  *             examples:
  *               jsonObject:
  *                 summary: An example JSON response
- *                 value: '[{ "id": 1, "email_address": "user@email.com","user_name": "niall", "date_of_birth": "0000-00-00" }, { "id": 2,  "email_address": "user@email.com","user_name": "tom", "date_of_birth": "0000-00-00" }]'
+ *                 value: '[{ "id": 1, "email_address": "user@email.com","username": "niall", "date_of_birth": "0000-00-00" }, { "id": 2,  "email_address": "user@email.com","user_name": "tom", "date_of_birth": "0000-00-00" }]'
  *       204:
  *         description: No content
  */
@@ -39,13 +40,13 @@ Users.get("/", function (req, res) {
     {
       id: 1,
       email_address: "user@email.com",
-      user_name: "username",
+      username: "username",
       date_of_birth: "0000-00-00",
     },
     {
       id: 2,
       email_address: "user@email.com",
-      user_name: "username",
+      username: "username",
       date_of_birth: "0000-00-00",
     },
   ]);
@@ -71,15 +72,15 @@ Users.get("/", function (req, res) {
  *             examples:
  *               jsonObject:
  *                 summary: An example JSON response
- *                 value: '{ "id": 1,  "email_address": "user@email.com","user_name": "niall", "date_of_birth": "0000-00-00" }'
+ *                 value: '{ "id": 1,  "email_address": "user@email.com","username": "niall", "date_of_birth": "0000-00-00" }'
  *       204:
  *         description: No content
  */
-Users.get("/:user_id(\\d+)", (req, res) => {
-  const { user_id } = req.params;
+Users.get("/:id(\\d+)", (req, res) => {
+  const { id } = req.params;
   res.status(200).json({
     email_address: "user@email.com",
-    user_name: "username",
+    username: "username",
     date_of_birth: "0000-00-00",
   });
 });
@@ -124,7 +125,7 @@ Users.get("/:user_id(\\d+)", (req, res) => {
  *             examples:
  *               jsonObject:
  *                 summary: An example JSON response
- *                 value: '{ "email_address": "user@email.com","user_name": "niall","password": "Password1", "date_of_birth": "0000-00-00" }'
+ *                 value: '{ "email_address": "user@email.com","username": "niall","password": "Password1", "date_of_birth": "0000-00-00" }'
  *       204:
  *         description: No content
  */
@@ -170,10 +171,7 @@ Users.post(
  *         description: OK
  *         content:
  *           application/json:
- *             examples:
- *               jsonObject:
- *                 summary: An example JSON response
- *                 value: '[{ "id": 1, "name": "Some Items", "key": "SI" }, { "id": 2, "summary": "More Items", "key": "MI" }]'
+ *
  *       204:
  *         description: No content
  */
@@ -202,7 +200,7 @@ Users.delete("/:userId(\\d+)", function (req, res) {
  *             examples:
  *               jsonObject:
  *                 summary: An example JSON response
- *                 value: '[{ "id": 1, "name": "Some Items", "key": "SI" }, { "id": 2, "summary": "More Items", "key": "MI" }]'
+ *                 value: '["user_id": 1, "film_id": 2, "rating": 5.3, "description": "Such a meh film" }, { "user_id": 1, "film_id": 2, "rating": 5.3, "description": "Such a meh film" }]'
  *       204:
  *         description: No content
  */
@@ -210,12 +208,14 @@ Users.get("/:id(\\d+)/reviews", function (req, res) {
   const { id } = req.query;
   res.status(200).json([
     {
+      id: 1,
       film_id: 1,
       film_name: "FILM",
       rating: 8.5,
       description: "Great movie",
     },
     {
+      id: 2,
       film_id: 1,
       film_name: "FILM",
       rating: 8.5,
@@ -281,6 +281,43 @@ Users.get("/:id(\\d+)/films", function (req, res) {
  *     ]
  *     summary: Updates User Films list
  *     operationId: films
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         type: integer
+ *         description: The id of the requested user.
+ *         example: 1
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               films:
+ *                 type: array
+ *                 required: true
+ *                 items:
+ *                   $ref: "#/components/schemas/films"
+ *                 example:
+ *                     - film_id: 2
+ *                       status: 3
+ *                     - film_id: 100
+ *                       status: 2
+ *       components:
+ *         schemas:
+ *           films:
+ *             description: List of Films
+ *             type: object
+ *             properties:
+ *               film_id:
+ *                 type: integer
+ *               status:
+ *                 type: integer
+ *             example:
+ *                 - film_id: 1
+ *                   status: 2
+ *                 - film_id: 2
+ *                   status: 1
  *     responses:
  *       200:
  *         description: OK
@@ -289,13 +326,14 @@ Users.get("/:id(\\d+)/films", function (req, res) {
  *             examples:
  *               jsonObject:
  *                 summary: An example JSON response
- *                 value: '[{ "id": 1, "name": "Some Items", "key": "SI" }, { "id": 2, "summary": "More Items", "key": "MI" }]'
+ *                 value: '[{ "film_id": 1, "status": 2 }, {"film_id": 6, "status": 3 }]'
  *       204:
  *         description: No content
  */
 Users.patch(
   "//:id(\\d+)",
   [check("film_id").isNumeric, check("status").isNumeric],
+  validate,
   (req, res) => {
     const { film_id, status } = req.body;
     console.log("film_id:", film_id, "status:", status);

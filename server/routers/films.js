@@ -29,7 +29,7 @@ const Films = Router();
  *             examples:
  *               jsonObject:
  *                 summary: An example JSON response
- *                 value: '[{ "id": 1, "name": "Some Items", "key": "SI" }, { "id": 2, "summary": "More Items", "key": "MI" }]'
+ *                 value: '[{  "film_name": "Black Dynamite", "description": "How do you describe Black Dynamite", "genre": "Parody", "rating": 7.5,"image_location": "www.google.com", "tmdb_id": 1000 }, {  "film_name": "Black Dynamite", "description": "How do you describe Black Dynamite", "genre": "Parody", "rating": 7.5,"image_location": "www.google.com", "tmdb_id": 1000 }]'
  *       204:
  *         description: No content
  */
@@ -60,7 +60,7 @@ Films.get("/", (req, res) => {
  *             examples:
  *               jsonObject:
  *                 summary: An example JSON response
- *                 value: '[{ "id": 1, "name": "Some Items", "key": "SI" }, { "id": 2, "summary": "More Items", "key": "MI" }]'
+ *                 value: '{ "film_name": "Black Dynamite", "description": "How do you describe Black Dynamite", "genre": "Parody", "rating": 7.5,"image_location": "www.google.com", "tmdb_id": 1000 }'
  *       204:
  *         description: No content
  */
@@ -123,6 +123,42 @@ Films.get("/:film_id(\\d+)/actors").get((req, res) => {
  *       films
  *     ]
  *     summary: Create a new film to add to list
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               film_name:
+ *                 type: string
+ *                 required: true
+ *                 description: The name for the film
+ *                 example: Hard Boiled 2
+ *               description:
+ *                 type: string
+ *                 required: true
+ *                 description: The synopsis for the user
+ *                 example: A Cop Film with a lot shooting, directed by John Woo
+ *               genre:
+ *                 type: string
+ *                 required: true
+ *                 description: The genre of the film
+ *                 example: Action
+ *               rating:
+ *                 type: number
+ *                 required: true
+ *                 description: The overall rating of the film
+ *                 example: 7.4
+ *               image_location:
+ *                 type: string
+ *                 required: true
+ *                 description: the location where the movie poster is stored
+ *                 example: www.google.com
+ *               tmdb_id:
+ *                 type: integer
+ *                 required: true
+ *                 description: The Movie Database ID of film
+ *                 example: 50343
  *     responses:
  *       200:
  *         description: OK
@@ -131,7 +167,7 @@ Films.get("/:film_id(\\d+)/actors").get((req, res) => {
  *             examples:
  *               jsonObject:
  *                 summary: An example JSON response
- *                 value: '[{ "id": 1, "name": "Some Items", "key": "SI" }, { "id": 2, "summary": "More Items", "key": "MI" }]'
+ *                 value: '{ "film_name": "Black Dynamite", "description": "How do you describe Black Dynamite", "genre": "Parody", "rating": 7.5,"image_location": "www.google.com", "tmdb_id": 1000 }'
  *       204:
  *         description: No content
  */

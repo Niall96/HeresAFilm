@@ -1,6 +1,7 @@
 const express = require("express");
 const swaggerUI = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
+const bp = require("body-parser");
 const { FilmsRouter, ReviewsRouter, UsersRouter } = require("./routers");
 const app = express();
 /* configure Swagger */
@@ -24,6 +25,8 @@ app.use("/swagger.json", (req, res) =>
   res.json(openapiSpecification).status(200)
 );
 
+app.use(bp.json());
+app.use(bp.urlencoded({ extended: true }));
 app.use("/users", UsersRouter);
 app.use("/films", FilmsRouter);
 app.use("/reviews", ReviewsRouter);

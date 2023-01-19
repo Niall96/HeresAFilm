@@ -52,7 +52,7 @@ const Reviews = Router();
  *             examples:
  *               jsonObject:
  *                 summary: An example JSON response
- *                 value: '{ "id": 1, "name": "Some Items", "key": "SI" }'
+ *                 value: '{ "user_id": 1, "film_id": 2, "rating": 5.3, "description": "Such a meh film" }'
  *       204:
  *         description: No content
  */
@@ -98,10 +98,6 @@ Reviews.post(
  *         description: OK
  *         content:
  *           application/json:
- *             examples:
- *               jsonObject:
- *                 summary: An example JSON response
- *                 value: '[{ "id": 1, "name": "Some Items", "key": "SI" }, { "id": 2, "summary": "More Items", "key": "MI" }]'
  *       204:
  *         description: No content
  */
