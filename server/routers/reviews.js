@@ -6,7 +6,7 @@ function validate(req, res, next) {
   const hasError = !error.isEmpty();
 
   if (hasError) {
-    res.status(400).json({ error: error.array() });
+    res.status(400).json({ error: error.array({ onlyFirstError: true }) });
   } else {
     next();
   }
@@ -22,6 +22,28 @@ const Reviews = Router();
  *       reviews
  *     ]
  *     summary: Creates a new review about a film
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               user_id:
+ *                 type: number
+ *                 required: true
+ *                 description: The unique id for the user posting review
+ *               film_id:
+ *                 type: number
+ *                 required: true
+ *                 description: The unique id of the film
+ *               rating:
+ *                 type: number
+ *                 required: true
+ *                 description: The user rating for the film
+ *               description:
+ *                 type: string
+ *                 required: true
+ *                 description: The user review for the film
  *     responses:
  *       200:
  *         description: OK
@@ -30,19 +52,20 @@ const Reviews = Router();
  *             examples:
  *               jsonObject:
  *                 summary: An example JSON response
- *                 value: '[{ "id": 1, "name": "Some Items", "key": "SI" }, { "id": 2, "summary": "More Items", "key": "MI" }]'
+ *                 value: '{ "id": 1, "name": "Some Items", "key": "SI" }'
  *       204:
  *         description: No content
  */
 Reviews.post(
   "/",
   [
-    check("user_id").matches(/d/).isNumeric(),
-    check("film_id").matches(/d/).isNumeric(),
+    check("user_id").isNumeric(),
+    check("film_id").isNumeric(),
     check("rating").isNumeric().withMessage("The rating must be numerical "),
     check("description")
       .isLength({ min: 1, max: 200 })
-      .withMessage("The review must have a description.").trim,
+      .withMessage("The review must have a description.")
+      .trim(),
   ],
   validate,
   function (req, res) {

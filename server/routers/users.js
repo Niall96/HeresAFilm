@@ -1,12 +1,12 @@
 const { Router } = require("express");
-const { check, validationResult } = require("express-validator");
+const { check, validationResult, body } = require("express-validator");
 
 function validate(req, res, next) {
   const error = validationResult(req);
   const hasError = !error.isEmpty();
 
   if (hasError) {
-    res.status(400).json({ error: error.array() });
+    res.status(400).json({ error: error.array({ onlyFirstError: true }) });
   } else {
     next();
   }
@@ -29,7 +29,7 @@ const Users = Router();
  *             examples:
  *               jsonObject:
  *                 summary: An example JSON response
- *                 value: '[{ "id": 1, "name": "Some Items", "key": "SI" }, { "id": 2, "summary": "More Items", "key": "MI" }]'
+ *                 value: '[{ "id": 1, "email_address": "user@email.com","user_name": "niall", "date_of_birth": "0000-00-00" }, { "id": 2,  "email_address": "user@email.com","user_name": "tom", "date_of_birth": "0000-00-00" }]'
  *       204:
  *         description: No content
  */
@@ -58,6 +58,11 @@ Users.get("/", function (req, res) {
  *       users
  *     ]
  *     summary: returns a specified user
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         type: integer
+ *         description: The ID of the requested user.
  *     responses:
  *       200:
  *         description: OK
@@ -66,7 +71,7 @@ Users.get("/", function (req, res) {
  *             examples:
  *               jsonObject:
  *                 summary: An example JSON response
- *                 value: '[{ "id": 1, "name": "Some Items", "key": "SI" }, { "id": 2, "summary": "More Items", "key": "MI" }]'
+ *                 value: '{ "id": 1,  "email_address": "user@email.com","user_name": "niall", "date_of_birth": "0000-00-00" }'
  *       204:
  *         description: No content
  */
@@ -86,42 +91,69 @@ Users.get("/:user_id(\\d+)", (req, res) => {
  *       users
  *     ]
  *     summary: Creates a new user with the name and key
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email_address:
+ *                 type: string
+ *                 required: true
+ *                 description: The email for the user
+ *                 example: example@email.com
+ *               username:
+ *                 type: string
+ *                 required: true
+ *                 description: The username for the user
+ *                 example: username
+ *               password:
+ *                 type: string
+ *                 required: true
+ *                 description: The password for the user
+ *                 example: password!1
+ *               date_of_birth:
+ *                 type: string
+ *                 required: true
+ *                 description: The date of birth of the user
  *     responses:
- *       200:
+ *       201:
  *         description: OK
  *         content:
  *           application/json:
  *             examples:
  *               jsonObject:
  *                 summary: An example JSON response
- *                 value: '[{ "id": 1, "name": "Some Items", "key": "SI" }, { "id": 2, "summary": "More Items", "key": "MI" }]'
+ *                 value: '{ "email_address": "user@email.com","user_name": "niall","password": "Password1", "date_of_birth": "0000-00-00" }'
  *       204:
  *         description: No content
  */
 Users.post(
   "/",
   [
-    check("email")
+    body("email_address")
       .isLength({ min: 3 })
       .withMessage("the email must have minimum length of 3")
       .isEmail()
       .withMessage("the email must be in a valid email format")
       .trim(),
-    check("username")
+    body("username")
+      .isString()
       .isLength({ min: 6 })
       .withMessage("the username must have minimum length of 6")
       .trim(),
-    check("password")
+    body("password")
       .isLength({ min: 8, max: 15 })
       .withMessage("the password should have min and max length between 8-15")
       .matches(/\d/)
       .withMessage("the password should have at least one number")
       .matches(/[!@#$%^&*(),.?":{}|<>]/)
       .withMessage("the password should have at least one special character"),
+    body("date_of_birth").exists(),
   ],
   validate,
   (req, res) => {
-    const { email_address, user_name, password, date_of_birth } = req.body;
+    const { email_address, username, password, date_of_birth } = req.body;
     res.sendStatus(201);
   }
 );
@@ -157,6 +189,11 @@ Users.delete("/:userId(\\d+)", function (req, res) {
  *       users
  *     ]
  *     summary: Returns an array of users reviews
+ *     parameters:
+ *      - name: id
+ *        in: path
+ *        type: integer
+ *        description: The ID of the requested user.
  *     responses:
  *       200:
  *         description: OK
