@@ -274,7 +274,22 @@ Users.get("/:id(\\d+)/films", function (req, res) {
 
 /**
  * @swagger
- * /user/{id}/films:
+ *components:
+ *         schemas:
+ *           films:
+ *             description: List of Films
+ *             type: object
+ *             properties:
+ *               film_id:
+ *                 type: integer
+ *               status:
+ *                 type: integer
+ *             example:
+ *                 - film_id: 1
+ *                   status: 2
+ *                 - film_id: 2
+ *                   status: 1
+ * /users/{id}/films:
  *   patch:
  *     tags: [
  *       users
@@ -297,27 +312,12 @@ Users.get("/:id(\\d+)/films", function (req, res) {
  *                 type: array
  *                 required: true
  *                 items:
- *                   $ref: "#/components/schemas/films"
+ *                   $ref: '#/components/schemas/films'
  *                 example:
  *                     - film_id: 2
  *                       status: 3
  *                     - film_id: 100
  *                       status: 2
- *       components:
- *         schemas:
- *           films:
- *             description: List of Films
- *             type: object
- *             properties:
- *               film_id:
- *                 type: integer
- *               status:
- *                 type: integer
- *             example:
- *                 - film_id: 1
- *                   status: 2
- *                 - film_id: 2
- *                   status: 1
  *     responses:
  *       200:
  *         description: OK
