@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model actors {
+  id             Int    @id @default(autoincrement())
+  tmdb_id        Int
+  actor_name     String @db.VarChar
+  image_location String @db.VarChar
+}
+
+model film {
+  id             Int           @id @default(autoincrement())
+  film_name      String        @db.VarChar
+  synopsis       String        @db.VarChar
+  genre          String        @db.VarChar
+  release_date   DateTime?     @db.Date
+  rating         Decimal       @db.Decimal
+  image_location String        @db.VarChar
+  tmdb_id        Int
+  film_actors    film_actors[]
+  film_review    film_review[]
+}
+
+model film_actors {
+  id       Int   @id @default(autoincrement())
+  film_id  Int?
+  actor_id Int[]
+  film     film? @relation(fields: [film_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "film_id")
+}
+
+model film_review {
+  id          Int     @id @default(autoincrement())
+  film_id     Int?
+  user_id     Int?
+  description String  @db.VarChar
+  rating      Decimal @db.Decimal
+  film        film?   @relation(fields: [film_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "film_id")
+  users       users?  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_id")
+}
+
+model flyway_schema_history {
+  installed_rank Int      @id(map: "flyway_schema_history_pk")
+  version        String?  @db.VarChar(50)
+  description    String   @db.VarChar(200)
+  type           String   @db.VarChar(20)
+  script         String   @db.VarChar(1000)
+  checksum       Int?
+  installed_by   String   @db.VarChar(100)
+  installed_on   DateTime @default(now()) @db.Timestamp(6)
+  execution_time Int
+  success        Boolean
+
+  @@index([success], map: "flyway_schema_history_s_idx")
+}
+
+model user_films {
+  id      Int    @id @default(autoincrement())
+  user_id Int?
+  film    Int[]
+  users   users? @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_id")
+}
+
+model users {
+  id            Int           @id @default(autoincrement())
+  email_address String        @db.VarChar
+  username      String        @db.VarChar
+  user_password String        @db.VarChar
+  date_of_birth DateTime?     @db.Date
+  created       DateTime?     @default(now()) @db.Timestamp(6)
+  film_review   film_review[]
+  user_films    user_films[]
+}

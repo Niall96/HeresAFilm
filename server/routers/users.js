@@ -1,17 +1,7 @@
 const { Router } = require("express");
-const { check, validationResult, body } = require("express-validator");
-
-function validate(req, res, next) {
-  console.log(req.body);
-  const error = validationResult(req);
-  const hasError = !error.isEmpty();
-
-  if (hasError) {
-    res.status(400).json({ error: error.array({ onlyFirstError: true }) });
-  } else {
-    next();
-  }
-}
+const { check, body } = require("express-validator");
+const { validateUtils } = require("../utils");
+const { UsersController } = require("../controllers");
 
 const Users = Router();
 /**
@@ -34,23 +24,8 @@ const Users = Router();
  *       204:
  *         description: No content
  */
-Users.get("/", function (req, res) {
-  const { name } = req.query;
-  res.status(200).json([
-    {
-      id: 1,
-      email_address: "user@email.com",
-      username: "username",
-      date_of_birth: "0000-00-00",
-    },
-    {
-      id: 2,
-      email_address: "user@email.com",
-      username: "username",
-      date_of_birth: "0000-00-00",
-    },
-  ]);
-});
+Users.get("/", UsersController.getAll);
+
 /**
  * @swagger
  * /users/{id}:
@@ -76,14 +51,35 @@ Users.get("/", function (req, res) {
  *       204:
  *         description: No content
  */
-Users.get("/:id(\\d+)", (req, res) => {
-  const { id } = req.params;
-  res.status(200).json({
-    email_address: "user@email.com",
-    username: "username",
-    date_of_birth: "0000-00-00",
-  });
-});
+Users.get("/:id(\\d+)", UsersController.getById);
+
+/**
+ * @swagger
+ * /users/{username}:
+ *   get:
+ *     tags: [
+ *       users
+ *     ]
+ *     summary: returns a specified user
+ *     parameters:
+ *       - name: username
+ *         in: path
+ *         type: string
+ *         description: The username of the requested user.
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             examples:
+ *               jsonObject:
+ *                 summary: An example JSON response
+ *                 value: '{ "id": 1,  "email_address": "user@email.com","username": "niall", "date_of_birth": "0000-00-00" }'
+ *       204:
+ *         description: No content
+ */
+Users.get("/username(\\g)", UsersController.getByUsername);
+
 /**
  * @swagger
  * /users:
@@ -152,7 +148,7 @@ Users.post(
       .withMessage("the password should have at least one special character"),
     body("date_of_birth").exists(),
   ],
-  validate,
+  validateUtils.validate,
   (req, res) => {
     const { email_address, username, password, date_of_birth } = req.body;
     res.sendStatus(201);
@@ -166,6 +162,11 @@ Users.post(
  *       users
  *     ]
  *     summary: Delete user from application
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         type: integer
+ *         description: Delete the user by their id.
  *     responses:
  *       200:
  *         description: OK
@@ -175,10 +176,7 @@ Users.post(
  *       204:
  *         description: No content
  */
-Users.delete("/:userId(\\d+)", function (req, res) {
-  const { userId } = req.params;
-  console.log("${userId} deleted");
-});
+Users.delete("/:id(\\d+)", UsersController.deleteUser);
 /**
  * @swagger
  * /users/{id}/reviews:
@@ -333,7 +331,7 @@ Users.get("/:id(\\d+)/films", function (req, res) {
 Users.patch(
   "//:id(\\d+)",
   [check("film_id").isNumeric, check("status").isNumeric],
-  validate,
+  validateUtils.validate,
   (req, res) => {
     const { film_id, status } = req.body;
     console.log("film_id:", film_id, "status:", status);

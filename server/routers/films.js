@@ -1,16 +1,7 @@
 const { Router } = require("express");
-const { check, validationResult } = require("express-validator");
-
-function validate(req, res, next) {
-  const error = validationResult(req);
-  const hasError = !error.isEmpty();
-
-  if (hasError) {
-    res.status(400).json({ error: error.array({ onlyFirstError: true }) });
-  } else {
-    next();
-  }
-}
+const { check } = require("express-validator");
+const { validateUtils } = require("../utils");
+const { FilmsController } = require("../controllers");
 
 const Films = Router();
 /**
@@ -33,17 +24,8 @@ const Films = Router();
  *       204:
  *         description: No content
  */
-Films.get("/", (req, res) => {
-  res.status(200).json({
-    film_name: "film name",
-    description: "This is a movie",
-    genre: "Action",
-    release_date: "0000-00-00",
-    rating: 8.5,
-    image_location: "www.google.com",
-    tmdb_id: 100,
-  });
-});
+Films.get("/", FilmsController.getAll);
+
 /**
  * @swagger
  * /films/{id}:
@@ -52,6 +34,11 @@ Films.get("/", (req, res) => {
  *       films
  *     ]
  *     summary: Returns a specific film
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         type: integer
+ *         description: The ID of the requested film.
  *     responses:
  *       200:
  *         description: OK
@@ -64,18 +51,7 @@ Films.get("/", (req, res) => {
  *       204:
  *         description: No content
  */
-Films.get("/:film_id(\\d+)", (req, res) => {
-  const { film_id } = req.params;
-  res.status(200).json({
-    film_name: "film name",
-    description: "This is a movie",
-    genre: "Action",
-    release_date: "0000-00-00",
-    rating: 8.5,
-    image_location: "www.google.com",
-    tmdb_id: 100,
-  });
-});
+Films.get("/:id(\\d+)", FilmsController.getById);
 
 /**
  * @swagger
@@ -187,7 +163,7 @@ Films.post(
       .exists()
       .withMessage("The film must exist on the movie database"),
   ],
-  validate,
+  validateUtils.validate,
   function (req, res) {
     const { film_name, description, genre, rating, image_location, tmdb_id } =
       req.body;

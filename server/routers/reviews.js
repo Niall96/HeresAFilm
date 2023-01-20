@@ -1,16 +1,6 @@
 const { Router } = require("express");
-const { check, validationResult } = require("express-validator");
-
-function validate(req, res, next) {
-  const error = validationResult(req);
-  const hasError = !error.isEmpty();
-
-  if (hasError) {
-    res.status(400).json({ error: error.array({ onlyFirstError: true }) });
-  } else {
-    next();
-  }
-}
+const { check } = require("express-validator");
+const { validateUtils } = require("../utils");
 
 const Reviews = Router();
 
@@ -67,7 +57,7 @@ Reviews.post(
       .withMessage("The review must have a description.")
       .trim(),
   ],
-  validate,
+  validateUtils.validate,
   function (req, res) {
     const { user_id, film_id, film_name, rating, description } = req.body;
     console.log(
