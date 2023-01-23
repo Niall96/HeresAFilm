@@ -25,6 +25,7 @@ model film {
   tmdb_id        Int
   film_actors    film_actors[]
   film_review    film_review[]
+  user_films     user_films[]
 }
 
 model film_actors {
@@ -60,10 +61,14 @@ model flyway_schema_history {
 }
 
 model user_films {
-  id      Int    @id @default(autoincrement())
-  user_id Int?
-  film    Int[]
-  users   users? @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_id")
+  id        Int      @id @default(autoincrement())
+  user_id   Int?
+  film_id   Int?
+  watched   Boolean?
+  watchlist Boolean?
+  favorites Boolean?
+  film      film?    @relation(fields: [film_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "film_id")
+  users     users?   @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_id")
 }
 
 model users {

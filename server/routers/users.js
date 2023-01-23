@@ -2,6 +2,7 @@ const { Router } = require("express");
 const { check, body } = require("express-validator");
 const { validateUtils } = require("../utils");
 const { UsersController } = require("../controllers");
+const { createUser } = require("../controllers/users");
 
 const Users = Router();
 /**
@@ -78,7 +79,7 @@ Users.get("/:id(\\d+)", UsersController.getById);
  *       204:
  *         description: No content
  */
-Users.get("/username(\\g)", UsersController.getByUsername);
+Users.get("/:username", UsersController.getByUsername);
 
 /**
  * @swagger
@@ -104,7 +105,7 @@ Users.get("/username(\\g)", UsersController.getByUsername);
  *                 required: true
  *                 description: The username for the user
  *                 example: username
- *               password:
+ *               user_password:
  *                 type: string
  *                 required: true
  *                 description: The password for the user
@@ -121,7 +122,7 @@ Users.get("/username(\\g)", UsersController.getByUsername);
  *             examples:
  *               jsonObject:
  *                 summary: An example JSON response
- *                 value: '{ "email_address": "user@email.com","username": "niall","password": "Password1", "date_of_birth": "0000-00-00" }'
+ *                 value: '{ "email_address": "user@email.com","username": "niall","user_password": "Password1", "date_of_birth": "0000-00-00" }'
  *       204:
  *         description: No content
  */
@@ -149,10 +150,78 @@ Users.post(
     body("date_of_birth").exists(),
   ],
   validateUtils.validate,
-  (req, res) => {
-    const { email_address, username, password, date_of_birth } = req.body;
-    res.sendStatus(201);
-  }
+  UsersController.createUser
+);
+/**
+ * @swagger
+ * /users:
+ *   put:
+ *     tags: [
+ *       users
+ *     ]
+ *     summary: Updates an user
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email_address:
+ *                 type: string
+ *                 required: true
+ *                 description: The email for the user
+ *                 example: example@email.com
+ *               username:
+ *                 type: string
+ *                 required: true
+ *                 description: The username for the user
+ *                 example: username
+ *               user_password:
+ *                 type: string
+ *                 required: true
+ *                 description: The password for the user
+ *                 example: password!1
+ *               date_of_birth:
+ *                 type: string
+ *                 required: true
+ *                 description: The date of birth of the user
+ *     responses:
+ *       201:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             examples:
+ *               jsonObject:
+ *                 summary: An example JSON response
+ *                 value: '{ "email_address": "user@email.com","username": "niall","user_password": "Password1", "date_of_birth": "0000-00-00" }'
+ *       204:
+ *         description: No content
+ */
+Users.put(
+  "/",
+  [
+    body("email_address")
+      .isLength({ min: 3 })
+      .withMessage("the email must have minimum length of 3")
+      .isEmail()
+      .withMessage("the email must be in a valid email format")
+      .trim(),
+    body("username")
+      .isString()
+      .isLength({ min: 6 })
+      .withMessage("the username must have minimum length of 6")
+      .trim(),
+    body("password")
+      .isLength({ min: 8, max: 15 })
+      .withMessage("the password should have min and max length between 8-15")
+      .matches(/\d/)
+      .withMessage("the password should have at least one number")
+      .matches(/[!@#$%^&*(),.?":{}|<>]/)
+      .withMessage("the password should have at least one special character"),
+    body("date_of_birth").exists(),
+  ],
+  validateUtils.validate,
+  UsersController.updateUser
 );
 /**
  * @swagger
@@ -202,29 +271,11 @@ Users.delete("/:id(\\d+)", UsersController.deleteUser);
  *       204:
  *         description: No content
  */
-Users.get("/:id(\\d+)/reviews", function (req, res) {
-  const { id } = req.query;
-  res.status(200).json([
-    {
-      id: 1,
-      film_id: 1,
-      film_name: "FILM",
-      rating: 8.5,
-      description: "Great movie",
-    },
-    {
-      id: 2,
-      film_id: 1,
-      film_name: "FILM",
-      rating: 8.5,
-      description: "Great movie",
-    },
-  ]);
-});
+Users.get("/:id(\\d+)/reviews", UsersController.getUserReviews);
 
 /**
  * @swagger
- * /users/{id}/films:
+ * /users/{id}/film:
  *   get:
  *     tags: [
  *       users
@@ -232,18 +283,31 @@ Users.get("/:id(\\d+)/reviews", function (req, res) {
  *     summary: Returns list of films by specified status
  *     operationId: films
  *     parameters:
- *       - name: status
+ *       - name: id
+ *         in: path
+ *         type: integer
+ *         description: The ID of the requested user.
+ *       - name: favorites
  *         in: query
  *         description: Is the film considered a favourite
  *         required: false
  *         explode: true
  *         schema:
- *           type: string
- *           default: watched
- *           enum:
- *             - watched
- *             - watchlist
- *             - favorite
+ *           type: boolean
+ *       - name: watched
+ *         in: query
+ *         description: Has the film been watched by the user
+ *         required: false
+ *         explode: true
+ *         schema:
+ *           type: boolean
+ *       - name: watchlist
+ *         in: query
+ *         description: Is the user gonna watch this film
+ *         required: false
+ *         explode: true
+ *         schema:
+ *           type: boolean
  *     responses:
  *       200:
  *         description: OK
@@ -252,23 +316,11 @@ Users.get("/:id(\\d+)/reviews", function (req, res) {
  *             examples:
  *               jsonObject:
  *                 summary: An example JSON response
- *                 value: '[{ "id": 1, "name": "Some Items", "key": "SI" }, { "id": 2, "summary": "More Items", "key": "MI" }]'
+ *                 value: '{ "user_id": 1, "film" : [{"film_id": 1, "status": 1 },{"film_id": 1, "status": 1 }]}'
  *       204:
  *         description: No content
  */
-Users.get("/:id(\\d+)/films", function (req, res) {
-  const { user_id, status } = req.params;
-  res.status(200).json([
-    {
-      film_id: 1,
-      status: 2,
-    },
-    {
-      film_id: 5,
-      status: 1,
-    },
-  ]);
-});
+Users.get("/:id(\\d+)/film", UsersController.getUserFilms);
 
 /**
  * @swagger
@@ -295,7 +347,7 @@ Users.get("/:id(\\d+)/films", function (req, res) {
  *     summary: Updates User Films list
  *     operationId: films
  *     parameters:
- *       - name: id
+ *       - name: user_id
  *         in: path
  *         type: integer
  *         description: The id of the requested user.
@@ -306,7 +358,7 @@ Users.get("/:id(\\d+)/films", function (req, res) {
  *           schema:
  *             type: object
  *             properties:
- *               films:
+ *               film:
  *                 type: array
  *                 required: true
  *                 items:
@@ -329,14 +381,8 @@ Users.get("/:id(\\d+)/films", function (req, res) {
  *         description: No content
  */
 Users.patch(
-  "//:id(\\d+)",
-  [check("film_id").isNumeric, check("status").isNumeric],
-  validateUtils.validate,
-  (req, res) => {
-    const { film_id, status } = req.body;
-    console.log("film_id:", film_id, "status:", status);
-    res.sendStatus(201);
-  }
+  "//:user_id(\\d+)//:film_id(\\d+)",
+  UsersController.updateUserFilms
 );
 
 module.exports = Users;

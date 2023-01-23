@@ -44,7 +44,11 @@ actor_id int ARRAY
 
 CREATE TABLE IF NOT EXISTS user_films(
 id SERIAL PRIMARY KEY,
-user_id int, 
+user_id INT, 
 CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES users (id),
-film int [][] 
+film_id INT,
+CONSTRAINT film_id FOREIGN KEY (film_id) REFERENCES film (id),
+watched boolean,
+watchlist boolean,
+favorites boolean
 );

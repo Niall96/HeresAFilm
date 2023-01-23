@@ -61,6 +61,11 @@ Films.get("/:id(\\d+)", FilmsController.getById);
  *       films
  *     ]
  *     summary: returns an array of actors from specified film
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         type: integer
+ *         description: The ID of the requested film.
  *     responses:
  *       200:
  *         description: OK
@@ -73,23 +78,7 @@ Films.get("/:id(\\d+)", FilmsController.getById);
  *       204:
  *         description: No content
  */
-Films.get("/:film_id(\\d+)/actors").get((req, res) => {
-  const { film_id } = req.query;
-  res.status(200).json([
-    {
-      id: 1,
-      name: "Chuck Norris",
-      image: "www.googleImages.com",
-      tmdb_id: 500,
-    },
-    {
-      id: 5,
-      name: "Keanu Reeves",
-      image: "www.googleImages.com",
-      tmdb_id: 4313,
-    },
-  ]);
-});
+Films.get("/:film_id(\\d+)/actors", FilmsController.getActors);
 
 /**
  * @swagger
@@ -164,25 +153,7 @@ Films.post(
       .withMessage("The film must exist on the movie database"),
   ],
   validateUtils.validate,
-  function (req, res) {
-    const { film_name, description, genre, rating, image_location, tmdb_id } =
-      req.body;
-    console.log(
-      "film_name:",
-      film_name,
-      "description:",
-      description,
-      "genre:",
-      genre,
-      "rating:",
-      rating,
-      "image_location:",
-      image_location,
-      "tmdb_id:",
-      tmdb_id
-    );
-    res.sendStatus(201);
-  }
+  FilmsController.createFilm
 );
 
 /**
@@ -192,6 +163,11 @@ Films.post(
  *     tags: [
  *       films
  *     ]
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         type: integer
+ *         description: The ID of the requested film.
  *     summary: Returns an array of reviews from a film
  *     responses:
  *       200:
@@ -205,23 +181,5 @@ Films.post(
  *       204:
  *         description: No content
  */
-Films.get("/:id(\\d+)/reviews", function (res, req) {
-  const { film_id } = req.query;
-  res.status(200).json([
-    {
-      user_id: 1,
-      user_name: "Niall",
-      film_name: "FILM",
-      rating: 8.5,
-      description: "Great movie",
-    },
-    {
-      user_id: 1,
-      user_name: "Niall",
-      film_name: "FILM",
-      rating: 8.5,
-      description: "Great movie",
-    },
-  ]);
-});
+Films.get("/:id(\\d+)/reviews", FilmsController.getFilmReviews);
 module.exports = Films;

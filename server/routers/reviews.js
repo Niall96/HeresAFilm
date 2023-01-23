@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const { check } = require("express-validator");
 const { validateUtils } = require("../utils");
+const { ReviewsController } = require("../controllers");
 
 const Reviews = Router();
 
@@ -58,22 +59,7 @@ Reviews.post(
       .trim(),
   ],
   validateUtils.validate,
-  function (req, res) {
-    const { user_id, film_id, film_name, rating, description } = req.body;
-    console.log(
-      "user_id:",
-      user_id,
-      "film_id:",
-      film_id,
-      "film_name:",
-      film_name,
-      "rating:",
-      rating,
-      "description:",
-      description
-    );
-    res.sendStatus(201);
-  }
+  ReviewsController.createReview
 );
 /**
  * @swagger
@@ -83,6 +69,11 @@ Reviews.post(
  *       reviews
  *     ]
  *     summary: Deletes user's film review
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         type: integer
+ *         description: The ID of the film review
  *     responses:
  *       200:
  *         description: OK
@@ -91,8 +82,5 @@ Reviews.post(
  *       204:
  *         description: No content
  */
-Reviews.delete("/:id(\\d+)/", function (req, res) {
-  const { id } = req.params;
-  console.log("review deleted");
-});
+Reviews.delete("/:id(\\d+)", ReviewsController.deleteReview);
 module.exports = Reviews;
