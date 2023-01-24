@@ -39,8 +39,8 @@ flowchart
 
 ```mermaid
 erDiagram 
- user ||--|| user_films : ""
- user_films ||--o{ film : ""
+ user ||--o{ user_films : ""
+ user_films }o--o{ film : ""
  film ||--o{ film_review : ""
  film ||--o{ film_actor : ""
  film_actor ||--o{ actor : ""
@@ -55,9 +55,12 @@ erDiagram
         timestamp created
     }
  user_films {
+                 serial id PK
                  int user_id FK
-                 array film_id FK
-                 array status
+                 int film_id FK
+                 boolean watched
+                 boolean watchlist
+                 boolean favorites
               }
  film {
       serial id PK
