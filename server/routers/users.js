@@ -275,7 +275,7 @@ Users.get("/:id(\\d+)/reviews", UsersController.getUserReviews);
 
 /**
  * @swagger
- * /users/{id}/film:
+ * /users/{id}/films:
  *   get:
  *     tags: [
  *       users
@@ -320,25 +320,72 @@ Users.get("/:id(\\d+)/reviews", UsersController.getUserReviews);
  *       204:
  *         description: No content
  */
-Users.get("/:id(\\d+)/film", UsersController.getUserFilms);
-
+Users.get("/:id(\\d+)/films", UsersController.getUserFilms);
 /**
  * @swagger
- *components:
- *         schemas:
- *           films:
- *             description: List of Films
+ * /users/films:
+ *   post:
+ *     tags: [
+ *       users
+ *     ]
+ *     summary: Creates a new film for a user
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
  *             type: object
  *             properties:
+ *               user_id:
+ *                 type: int
+ *                 required: true
+ *                 description: The user id
+ *                 example: 1
  *               film_id:
- *                 type: integer
- *               status:
- *                 type: integer
- *             example:
- *                 - film_id: 1
- *                   status: 2
- *                 - film_id: 2
- *                   status: 1
+ *                 type: string
+ *                 required: true
+ *                 description: The film id
+ *                 example: 1
+ *               watched:
+ *                 type: boolean
+ *                 required: true
+ *                 description: Boolean check if the film has been watched by the user
+ *                 example: true
+ *               watchlist:
+ *                 type: boolean
+ *                 required: true
+ *                 description: Boolean check if the film is on the user's watchlist
+ *                 example: true
+ *               favorites:
+ *                 type: boolean
+ *                 required: true
+ *                 description: Boolean check if the film is a favourite film of the user
+ *                 example: true
+ *     responses:
+ *       201:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             examples:
+ *               jsonObject:
+ *                 summary: An example JSON response
+ *                 value: '{ "user_id": 1,"film_id": 1,"watched": true, "watchlist": false, "favorite": true }'
+ *       204:
+ *         description: No content
+ */
+Users.post(
+  "/films",
+  [
+    body("user_id").isNumeric().withMessage("The user id must be numerical"),
+    body("film_id").isNumeric().withMessage("The film id must be numerical"),
+    body("watched").exists(),
+    body("watchlist").exists(),
+    body("favorite").exists(),
+  ],
+  validateUtils.validate,
+  UsersController.createUserFilm
+);
+/**
+ * @swagger
  * /users/{id}/films:
  *   patch:
  *     tags: [
@@ -347,10 +394,10 @@ Users.get("/:id(\\d+)/film", UsersController.getUserFilms);
  *     summary: Updates User Films list
  *     operationId: films
  *     parameters:
- *       - name: user_id
+ *       - name: id
  *         in: path
  *         type: integer
- *         description: The id of the requested user.
+ *         description: The id of the userFilm record.
  *         example: 1
  *     requestBody:
  *       content:
@@ -358,16 +405,21 @@ Users.get("/:id(\\d+)/film", UsersController.getUserFilms);
  *           schema:
  *             type: object
  *             properties:
- *               film:
- *                 type: array
+ *               watched:
+ *                 type: boolean
  *                 required: true
- *                 items:
- *                   $ref: '#/components/schemas/films'
- *                 example:
- *                     - film_id: 2
- *                       status: 3
- *                     - film_id: 100
- *                       status: 2
+ *                 description: Boolean check if the film has been watched by the user
+ *                 example: true
+ *               watchlist:
+ *                 type: boolean
+ *                 required: true
+ *                 description: Boolean check if the film is on the user's watchlist
+ *                 example: true
+ *               favorites:
+ *                 type: boolean
+ *                 required: true
+ *                 description: Boolean check if the film is a favourite film of the user
+ *                 example: true
  *     responses:
  *       200:
  *         description: OK
@@ -380,9 +432,6 @@ Users.get("/:id(\\d+)/film", UsersController.getUserFilms);
  *       204:
  *         description: No content
  */
-Users.patch(
-  "//:user_id(\\d+)//:film_id(\\d+)",
-  UsersController.updateUserFilms
-);
+Users.patch("//:user_id(\\d+)//:film_id(\\d+)", UsersController.updateUserFilm);
 
 module.exports = Users;

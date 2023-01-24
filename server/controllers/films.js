@@ -1,19 +1,17 @@
-const { PrismaClient } = require("@prisma/client");
-
-const prisma = new PrismaClient();
+const { filmsService } = require("../services");
+const { film } = require("../utils/prisma");
 
 async function getAll(req, res) {
-  const films = await prisma.film.findMany();
-  res.status(200).json(films);
+  const films = await filmsService.getAll();
+  if (films && films.length > 0) {
+    return res.status(200).json(films);
+  }
+  res.status(204);
 }
 
 async function getById(req, res) {
   const { id } = req.params;
-  const film = await prisma.film.findUnique({
-    where: {
-      id: parseInt(id),
-    },
-  });
+  const film = await filmsService.getById(id);
   if (film) {
     return res.status(200).json(film);
   }
@@ -22,11 +20,7 @@ async function getById(req, res) {
 
 async function getActors(req, res) {
   const { id } = req.params;
-  const actors = await prisma.film_actors.findUnique({
-    where: {
-      id: parseInt(id),
-    },
-  });
+  const actors = await filmsService.getActors(id);
   if (actors) {
     return res.status(200).json(actors);
   }
@@ -35,11 +29,7 @@ async function getActors(req, res) {
 
 async function getFilmReviews(req, res) {
   const { id } = req.params;
-  const reviews = await prisma.film_review.findMany({
-    where: {
-      film_id: parseInt(id),
-    },
-  });
+  const reviews = await filmsService.getFilmReviews(id);
   if (reviews) {
     return res.status(200).json(reviews);
   }
@@ -56,17 +46,15 @@ async function createFilm(req, res) {
     image_location,
     tmdb_id,
   } = req.body;
-  const review = await films.Create({
-    data: {
-      film_name,
-      synopsis,
-      genre,
-      release_date,
-      rating,
-      image_location,
-      tmdb_id,
-    },
-  });
+  await filmsService.createFilm(
+    film_name,
+    synopsis,
+    genre,
+    release_date,
+    rating,
+    image_location,
+    tmdb_id
+  );
   res.sendStatus(201);
 }
 

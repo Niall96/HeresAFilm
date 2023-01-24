@@ -1,19 +1,16 @@
-const { PrismaClient, Prisma } = require("@prisma/client");
+const { PrismaClient } = require("@prisma/client");
+const { usersService } = require("../services");
 
 const prisma = new PrismaClient();
 
 async function getAll(req, res) {
-  const users = await prisma.users.findMany();
+  const users = await usersService.getUsers();
   res.status(200).json(users);
 }
 
 async function getById(req, res) {
   const { id } = req.params;
-  const user = await prisma.users.findUnique({
-    where: {
-      id: parseInt(id),
-    },
-  });
+  const user = await usersService.getUserById(id);
   if (user) {
     return res.status(200).json(user);
   }
@@ -22,11 +19,7 @@ async function getById(req, res) {
 
 async function getByUsername(req, res) {
   const { username } = req.params;
-  const user = await prisma.users.findMany({
-    where: {
-      username: username,
-    },
-  });
+  const user = await usersService.getUserByUsername(username);
   if (user) {
     return res.status(200).json(user);
   }
@@ -35,20 +28,13 @@ async function getByUsername(req, res) {
 
 async function deleteUser(req, res) {
   const { id } = req.params;
-  const user = await prisma.users.delete({
-    where: {
-      id: parseInt(id),
-    },
-  });
+  const user = await usersService.deleteUser(id);
+  res.sendStatus(200).json(user);
 }
 
 async function getUserReviews(req, res) {
   const { id } = req.params;
-  const reviews = await prisma.film_review.findMany({
-    where: {
-      user_id: parseInt(id),
-    },
-  });
+  const reviews = await usersService.getUserReviews(id);
   if (reviews) {
     return res.status(200).json(reviews);
   }
@@ -72,12 +58,7 @@ async function getUserFilms(req, res) {
     filter.favorites = favorites === "true";
   }
 
-  const films = await prisma.user_films.findMany({
-    where: filter,
-    select: {
-      film_id: true,
-    },
-  });
+  const films = await usersService.getUserFilms(filter);
   if (films) {
     return res.status(200).json(films);
   }
@@ -86,55 +67,38 @@ async function getUserFilms(req, res) {
 
 async function createUser(req, res) {
   const { email_address, username, user_password, date_of_birth } = req.body;
-  await prisma.users.create({
-    data: {
-      username,
-      user_password,
-      email_address,
-      date_of_birth,
-      user_films: {
-        create: user_films?.map((id) => {
-          return {
-            user_id: id,
-          };
-        }),
-      },
-    },
-  });
-  res.sendStatus(201);
+  const newUser = await usersService.createUser(
+    email_address,
+    username,
+    user_password,
+    date_of_birth
+  );
+  res.sendStatus(201).json(newUser);
+}
+
+async function createUserFilm(req, res) {
+  const { user_id, film_id, watched, watchlist, favorites } = req.body;
+  const newUserFilm = await usersService.createUserFilm(
+    user_id,
+    film_id,
+    watched,
+    watchlist,
+    favorites
+  );
+  res.sendStatus(201).json(newUserFilm);
 }
 
 async function updateUser(req, res) {
   const { id } = req.params;
-  const { email_address, username, user_password, date_of_birth } = req.body;
-  await prisma.users.update({
-    where: {
-      id: parseInt(id),
-    },
-    data: {
-      username,
-      user_password,
-      email_address,
-      date_of_birth,
-    },
-  });
+  const { email_address, username, date_of_birth } = req.body;
+  await usersService.updateUser(id, email_address, username, date_of_birth);
   res.sendStatus(200);
 }
 
-async function updateUserFilms(req, res) {
-  const { user, film } = req.params;
+async function updateUserFilm(req, res) {
+  const { id } = req.params;
   const { watched, watchlist, favorites } = req.body;
-  await prisma.user_films.update({
-    where: {
-      user_id: parseInt(user),
-      film_id: parseInt(film),
-    },
-    data: {
-      watched: watched,
-      watchlist: watchlist,
-      favorites: favorites,
-    },
-  });
+  await usersService.updateUserFilms(id, watched, watchlist, favorites);
   res.sendStatus(200);
 }
 
@@ -147,5 +111,6 @@ module.exports = {
   getUserFilms,
   createUser,
   updateUser,
-  updateUserFilms,
+  updateUserFilm,
+  createUserFilm,
 };
