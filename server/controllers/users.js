@@ -14,9 +14,9 @@ async function getById(req, res) {
   res.sendStatus(204);
 }
 
-async function getByUsername(req, res) {
-  const { username } = req.params;
-  const user = await usersService.getUserByUsername(username);
+async function getUserByEmail(req, res) {
+  const { emailAddress } = req.params;
+  const user = await usersService.getUserByEmail(emailAddress);
   if (user) {
     return res.status(200).json(user);
   }
@@ -25,8 +25,8 @@ async function getByUsername(req, res) {
 
 async function deleteUser(req, res) {
   const { id } = req.params;
-  const user = await usersService.deleteUser(id);
-  res.sendStatus(200).json(user);
+  await usersService.deleteUser(id);
+  res.sendStatus(200);
 }
 
 async function getUserReviews(req, res) {
@@ -63,32 +63,27 @@ async function getUserFilms(req, res) {
 }
 
 async function createUser(req, res) {
-  const { email_address, username, user_password, date_of_birth } = req.body;
-  const newUser = await usersService.createUser(
-    email_address,
-    username,
-    user_password,
-    date_of_birth
-  );
-  res.sendStatus(201).json(newUser);
+  const { emailAddress, username, password, dateOfBirth } = req.body;
+  await usersService.createUser(emailAddress, username, password, dateOfBirth);
+  res.sendStatus(201);
 }
 
 async function createUserFilm(req, res) {
-  const { user_id, film_id, watched, watchlist, favorites } = req.body;
-  const newUserFilm = await usersService.createUserFilm(
-    user_id,
-    film_id,
+  const { userId, filmId, watched, watchlist, favorites } = req.body;
+  await usersService.createUserFilm(
+    userId,
+    filmId,
     watched,
     watchlist,
     favorites
   );
-  res.sendStatus(201).json(newUserFilm);
+  res.sendStatus(201);
 }
 
 async function updateUser(req, res) {
   const { id } = req.params;
-  const { email_address, username, date_of_birth } = req.body;
-  await usersService.updateUser(id, email_address, username, date_of_birth);
+  const { emailAddress, username, dateOfBirth } = req.body;
+  await usersService.updateUser(id, emailAddress, username, dateOfBirth);
   res.sendStatus(200);
 }
 
@@ -102,7 +97,7 @@ async function updateUserFilm(req, res) {
 module.exports = {
   getAll,
   getById,
-  getByUsername,
+  getUserByEmail,
   deleteUser,
   getUserReviews,
   getUserFilms,

@@ -1,10 +1,10 @@
 const { reviewsService } = require("../services");
 
 async function createReview(req, res) {
-  const { user_id, film_id, description, rating } = req.body;
+  const { userId, filmId, description, rating } = req.body;
   const review = await reviewsService.createReview(
-    user_id,
-    film_id,
+    userId,
+    filmId,
     description,
     rating
   );

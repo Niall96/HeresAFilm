@@ -29,23 +29,23 @@ async function getFilmReviews(id) {
 }
 
 async function createFilm(
-  film_name,
+  filmName,
   synopsis,
   genre,
-  release_date,
+  releaseDate,
   rating,
-  image_location,
-  tmdb_id
+  imageLocation,
+  tmdbId
 ) {
   return await prisma.films.Create({
     data: {
-      film_name,
-      synopsis,
-      genre,
-      release_date,
-      rating,
-      image_location,
-      tmdb_id,
+      film_name: filmName,
+      synopsis: synopsis,
+      genre: genre,
+      release_date: releaseDate,
+      rating: rating,
+      image_location: imageLocation,
+      tmdb_id: tmdbId,
     },
   });
 }

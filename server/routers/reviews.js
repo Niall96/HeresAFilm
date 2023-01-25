@@ -19,11 +19,11 @@ const Reviews = Router();
  *           schema:
  *             type: object
  *             properties:
- *               user_id:
+ *               userId:
  *                 type: number
  *                 required: true
  *                 description: The unique id for the user posting review
- *               film_id:
+ *               filmId:
  *                 type: number
  *                 required: true
  *                 description: The unique id of the film
@@ -50,8 +50,8 @@ const Reviews = Router();
 Reviews.post(
   "/",
   [
-    check("user_id").isNumeric(),
-    check("film_id").isNumeric(),
+    check("userId").isNumeric(),
+    check("filmId").isNumeric(),
     check("rating").isNumeric().withMessage("The rating must be numerical "),
     check("description")
       .isLength({ min: 1, max: 200 })

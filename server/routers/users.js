@@ -55,17 +55,17 @@ Users.get("/:id(\\d+)", UsersController.getById);
 
 /**
  * @swagger
- * /users/{username}:
+ * /users/{emailAddress}:
  *   get:
  *     tags: [
  *       users
  *     ]
  *     summary: returns a specified user
  *     parameters:
- *       - name: username
+ *       - name: emailAddress
  *         in: path
  *         type: string
- *         description: The username of the requested user.
+ *         description: The email address of the user.
  *     responses:
  *       200:
  *         description: OK
@@ -78,7 +78,7 @@ Users.get("/:id(\\d+)", UsersController.getById);
  *       204:
  *         description: No content
  */
-Users.get("/:username", UsersController.getByUsername);
+Users.get("/:emailAddress", UsersController.getUserByEmail);
 
 /**
  * @swagger
@@ -94,23 +94,24 @@ Users.get("/:username", UsersController.getByUsername);
  *           schema:
  *             type: object
  *             properties:
- *               email_address:
+ *               emailAddress:
  *                 type: string
  *                 required: true
  *                 description: The email for the user
- *                 example: example@email.com
+ *                 example: rooneyniall@rocketmail.com
  *               username:
  *                 type: string
  *                 required: true
  *                 description: The username for the user
- *                 example: username
- *               user_password:
+ *                 example: UserNiall
+ *               password:
  *                 type: string
  *                 required: true
  *                 description: The password for the user
- *                 example: password!1
- *               date_of_birth:
+ *                 example: Password12!
+ *               dateOfBirth:
  *                 type: string
+ *                 format: date-time
  *                 required: true
  *                 description: The date of birth of the user
  *     responses:
@@ -128,7 +129,7 @@ Users.get("/:username", UsersController.getByUsername);
 Users.post(
   "/",
   [
-    body("email_address")
+    body("emailAddress")
       .isLength({ min: 3 })
       .withMessage("the email must have minimum length of 3")
       .isEmail()
@@ -146,7 +147,7 @@ Users.post(
       .withMessage("the password should have at least one number")
       .matches(/[!@#$%^&*(),.?":{}|<>]/)
       .withMessage("the password should have at least one special character"),
-    body("date_of_birth").exists(),
+    body("dateOfBirth").exists(),
   ],
   validateUtils.validate,
   UsersController.createUser
@@ -165,7 +166,7 @@ Users.post(
  *           schema:
  *             type: object
  *             properties:
- *               email_address:
+ *               emailAddress:
  *                 type: string
  *                 required: true
  *                 description: The email for the user
@@ -175,12 +176,12 @@ Users.post(
  *                 required: true
  *                 description: The username for the user
  *                 example: username
- *               user_password:
+ *               password:
  *                 type: string
  *                 required: true
  *                 description: The password for the user
  *                 example: password!1
- *               date_of_birth:
+ *               dateOfBirth:
  *                 type: string
  *                 required: true
  *                 description: The date of birth of the user
@@ -199,7 +200,7 @@ Users.post(
 Users.put(
   "/",
   [
-    body("email_address")
+    body("emailAddress")
       .isLength({ min: 3 })
       .withMessage("the email must have minimum length of 3")
       .isEmail()
@@ -217,7 +218,7 @@ Users.put(
       .withMessage("the password should have at least one number")
       .matches(/[!@#$%^&*(),.?":{}|<>]/)
       .withMessage("the password should have at least one special character"),
-    body("date_of_birth").exists(),
+    body("dateOfBirth").exists(),
   ],
   validateUtils.validate,
   UsersController.updateUser
@@ -334,12 +335,12 @@ Users.get("/:id(\\d+)/films", UsersController.getUserFilms);
  *           schema:
  *             type: object
  *             properties:
- *               user_id:
+ *               userId:
  *                 type: int
  *                 required: true
  *                 description: The user id
  *                 example: 1
- *               film_id:
+ *               filmId:
  *                 type: string
  *                 required: true
  *                 description: The film id
@@ -374,8 +375,8 @@ Users.get("/:id(\\d+)/films", UsersController.getUserFilms);
 Users.post(
   "/films",
   [
-    body("user_id").isNumeric().withMessage("The user id must be numerical"),
-    body("film_id").isNumeric().withMessage("The film id must be numerical"),
+    body("userId").isNumeric().withMessage("The user id must be numerical"),
+    body("filmId").isNumeric().withMessage("The film id must be numerical"),
     body("watched").exists(),
     body("watchlist").exists(),
     body("favorite").exists(),
@@ -431,6 +432,6 @@ Users.post(
  *       204:
  *         description: No content
  */
-Users.patch("//:user_id(\\d+)//:film_id(\\d+)", UsersController.updateUserFilm);
+Users.patch("//:userId(\\d+)//:filmId(\\d+)", UsersController.updateUserFilm);
 
 module.exports = Users;

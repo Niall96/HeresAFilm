@@ -20,7 +20,7 @@ const Films = Router();
  *             examples:
  *               jsonObject:
  *                 summary: An example JSON response
- *                 value: '[{  "film_name": "Black Dynamite", "description": "How do you describe Black Dynamite", "genre": "Parody", "rating": 7.5,"image_location": "www.google.com", "tmdb_id": 1000 }, {  "film_name": "Black Dynamite", "description": "How do you describe Black Dynamite", "genre": "Parody", "rating": 7.5,"image_location": "www.google.com", "tmdb_id": 1000 }]'
+ *                 value: '[{  "filmName": "Black Dynamite", "description": "How do you describe Black Dynamite", "genre": "Parody", "rating": 7.5,"imageLocation": "www.google.com", "tmdbId": 1000 }, {  "filmName": "Black Dynamite", "description": "How do you describe Black Dynamite", "genre": "Parody", "rating": 7.5,"imageLocation": "www.google.com", "tmdbId": 1000 }]'
  *       204:
  *         description: No content
  */
@@ -78,7 +78,7 @@ Films.get("/:id(\\d+)", FilmsController.getById);
  *       204:
  *         description: No content
  */
-Films.get("/:film_id(\\d+)/actors", FilmsController.getActors);
+Films.get("/:filmId(\\d+)/actors", FilmsController.getActors);
 
 /**
  * @swagger
@@ -94,7 +94,7 @@ Films.get("/:film_id(\\d+)/actors", FilmsController.getActors);
  *           schema:
  *             type: object
  *             properties:
- *               film_name:
+ *               filmName:
  *                 type: string
  *                 required: true
  *                 description: The name for the film
@@ -109,17 +109,22 @@ Films.get("/:film_id(\\d+)/actors", FilmsController.getActors);
  *                 required: true
  *                 description: The genre of the film
  *                 example: Action
+ *               releaseDate:
+ *                 type: string
+ *                 required: true
+ *                 description: The release date of the film
+ *                 example: "1997-07-15"
  *               rating:
  *                 type: number
  *                 required: true
  *                 description: The overall rating of the film
  *                 example: 7.4
- *               image_location:
+ *               imageLocation:
  *                 type: string
  *                 required: true
  *                 description: the location where the movie poster is stored
  *                 example: www.google.com
- *               tmdb_id:
+ *               tmdbId:
  *                 type: integer
  *                 required: true
  *                 description: The Movie Database ID of film
@@ -139,7 +144,7 @@ Films.get("/:film_id(\\d+)/actors", FilmsController.getActors);
 Films.post(
   "/",
   [
-    check("film_name").exists().withMessage("The Film must have a name").trim(),
+    check("filmName").exists().withMessage("The Film must have a name").trim(),
     check("description")
       .isLength({ min: 10 })
       .withMessage("Provide a synopsis of the film")
@@ -148,7 +153,7 @@ Films.post(
       .trim(),
     check("genre").exists().withMessage("The Film must have a genre"),
     check("rating").isNumeric().withMessage("The rating must be numerical"),
-    check("tmdb_id")
+    check("tmdbId")
       .exists()
       .withMessage("The film must exist on the movie database"),
   ],

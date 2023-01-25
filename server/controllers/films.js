@@ -37,22 +37,22 @@ async function getFilmReviews(req, res) {
 
 async function createFilm(req, res) {
   const {
-    film_name,
+    filmName,
     synopsis,
     genre,
-    release_date,
+    releaseDate,
     rating,
-    image_location,
-    tmdb_id,
+    imageLocation,
+    tmdbId,
   } = req.body;
   await filmsService.createFilm(
-    film_name,
+    filmName,
     synopsis,
     genre,
-    release_date,
+    releaseDate,
     rating,
-    image_location,
-    tmdb_id
+    imageLocation,
+    tmdbId
   );
   res.sendStatus(201);
 }

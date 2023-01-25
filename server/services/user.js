@@ -11,7 +11,7 @@ async function getUsers() {
   });
 }
 
-async function getUserById() {
+async function getUserById(id) {
   return await prisma.users.findUnique({
     where: {
       id: parseInt(id),
@@ -25,42 +25,39 @@ async function getUserById() {
   });
 }
 
-async function getUserByUsername() {
-  return await prisma.users.findUnique({
+async function getUserByEmail(emailAddress) {
+  const users = await prisma.users.findMany({
     where: {
-      username: username,
+      email_address: emailAddress,
     },
     select: {
       id: true,
       username: true,
+      user_password: true,
       email_address: true,
       date_of_birth: true,
     },
   });
+  return users[0];
 }
 
-async function createUser(
-  email_address,
-  username,
-  user_password,
-  date_of_birth
-) {
-  const hashedPassword = await bcrypt.hash(user_password, 10);
+async function createUser(emailAddress, username, password, dateOfBirth) {
+  const hashedPassword = await bcrypt.hash(password, 10);
   return await prisma.users.create({
     data: {
       username: username,
       user_password: hashedPassword,
-      email_address: email_address,
-      date_of_birth: date_of_birth,
+      email_address: emailAddress,
+      date_of_birth: dateOfBirth,
     },
   });
 }
 
-async function createUserFilm(user_id, film_id, watched, watchlist, favorites) {
+async function createUserFilm(userId, filmId, watched, watchlist, favorites) {
   return await prisma.users.create({
     data: {
-      user_id: user_id,
-      film_id: film_id,
+      user_id: userId,
+      film_id: filmId,
       watched: watched,
       watchlist: watchlist,
       favorites: favorites,
@@ -68,15 +65,15 @@ async function createUserFilm(user_id, film_id, watched, watchlist, favorites) {
   });
 }
 
-async function updateUser(id, email_address, username, date_of_birth) {
+async function updateUser(id, emailAddress, username, dateOfBirth) {
   return await prisma.users.update({
     where: {
       id: parseInt(id),
     },
     data: {
-      username,
-      email_address,
-      date_of_birth,
+      username: username,
+      email_address: emailAddress,
+      date_of_birth: dateOfBirth,
     },
   });
 }
@@ -122,7 +119,7 @@ async function updateUserFilms(id, watched, watchlist, favorites) {
 module.exports = {
   getUsers,
   getUserById,
-  getUserByUsername,
+  getUserByEmail,
   createUser,
   createUserFilm,
   updateUser,
