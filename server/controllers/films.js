@@ -1,5 +1,4 @@
 const { filmsService } = require("../services");
-const { film } = require("../utils/prisma");
 
 async function getAll(req, res) {
   const films = await filmsService.getAll();

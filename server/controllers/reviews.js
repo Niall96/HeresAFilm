@@ -1,7 +1,4 @@
-const { PrismaClient } = require("@prisma/client");
 const { reviewsService } = require("../services");
-
-const prisma = new PrismaClient();
 
 async function createReview(req, res) {
   const { user_id, film_id, description, rating } = req.body;

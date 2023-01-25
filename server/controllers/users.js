@@ -1,7 +1,4 @@
-const { PrismaClient } = require("@prisma/client");
 const { usersService } = require("../services");
-
-const prisma = new PrismaClient();
 
 async function getAll(req, res) {
   const users = await usersService.getUsers();
