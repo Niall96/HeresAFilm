@@ -38,7 +38,7 @@ async function getUserByEmail(emailAddress) {
       date_of_birth: true,
     },
   });
-  return users[0];
+  return users && users.length > 0 && users[0];
 }
 
 async function createUser(emailAddress, username, password, dateOfBirth) {
@@ -54,7 +54,7 @@ async function createUser(emailAddress, username, password, dateOfBirth) {
 }
 
 async function createUserFilm(userId, filmId, watched, watchlist, favorites) {
-  return await prisma.users.create({
+  return await prisma.user_films.create({
     data: {
       user_id: userId,
       film_id: filmId,

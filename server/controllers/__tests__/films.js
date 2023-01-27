@@ -1,14 +1,11 @@
-const filmsController = require("../films");
 const { filmsService } = require("../../services");
 const { when } = require("jest-when");
-const { actors } = require("../../utils/prisma");
 const { FilmsController } = require("..");
 
 jest.mock("../../services/films");
-//jest.mock("../../routers/films");
 
 describe("FilmsController", () => {
-  /*describe("getFilms_Success", () => {
+  describe("getFilms", () => {
     it("should return a 200 when films are available", async () => {
       const films = [{ id: 1 }];
       filmsService.getFilms.mockReturnValueOnce(films);
@@ -27,7 +24,7 @@ describe("FilmsController", () => {
       expect(res.json).toHaveBeenCalledTimes(1);
       expect(res.json).toHaveBeenCalledWith(films);
     });
-  }); */
+  });
 
   describe("getFilmsById", () => {
     it("should return a 200 when a film is available", async () => {

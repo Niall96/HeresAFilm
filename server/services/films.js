@@ -13,7 +13,7 @@ async function getById(id) {
 }
 
 async function getActors(id) {
-  return await prisma.film_actors.findUnique({
+  return await prisma.film_actors.findMany({
     where: {
       film_id: parseInt(id),
     },
@@ -37,7 +37,7 @@ async function createFilm(
   imageLocation,
   tmdbId
 ) {
-  return await prisma.films.Create({
+  return await prisma.film.create({
     data: {
       film_name: filmName,
       synopsis: synopsis,

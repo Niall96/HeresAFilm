@@ -24,7 +24,7 @@ const Films = Router();
  *       204:
  *         description: No content
  */
-//Films.get("/", FilmsController.getFilms);
+Films.get("/", FilmsController.getFilms);
 
 /**
  * @swagger

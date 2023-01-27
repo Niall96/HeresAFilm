@@ -1,7 +1,6 @@
 const usersService = require("./users");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { use } = require("../routers/films");
 const {
   ACCESS_TOKEN_SECRET,
   REFRESH_TOKEN_SECRET,

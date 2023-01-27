@@ -1,7 +1,7 @@
 const prisma = require("../utils/prisma");
 
 async function createReview(userId, filmId, description, rating) {
-  return await film_review.Create({
+  await prisma.film_review.create({
     data: {
       user_id: userId,
       film_id: filmId,
