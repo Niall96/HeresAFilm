@@ -24,7 +24,7 @@ const Films = Router();
  *       204:
  *         description: No content
  */
-Films.get("/", FilmsController.getAll);
+//Films.get("/", FilmsController.getFilms);
 
 /**
  * @swagger
@@ -187,4 +187,5 @@ Films.post(
  *         description: No content
  */
 Films.get("/:id(\\d+)/reviews", FilmsController.getFilmReviews);
+
 module.exports = Films;

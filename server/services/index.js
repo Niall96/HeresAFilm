@@ -1,5 +1,5 @@
 const services = {
-  usersService: require("./user"),
+  usersService: require("./users"),
   reviewsService: require("./reviews"),
   filmsService: require("./films"),
   authService: require("./auth"),

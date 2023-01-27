@@ -12,6 +12,10 @@ async function authenticate(req, res) {
 
 async function refresh(req, res) {
   const authenticationTokens = await authService.refresh(res.locals.user);
+
+  if (!authenticationTokens) {
+    return res.sendStatus(401);
+  }
   res.status(200).json(authenticationTokens);
 }
 

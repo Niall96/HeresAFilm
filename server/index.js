@@ -24,6 +24,23 @@ const swaggerDefinition = {
     title: "HeresAFilm API",
     version: "v1",
   },
+  components: {
+    securitySchemes: {
+      bearerAuth: {
+        type: "http",
+        in: "header",
+        name: "Authorization",
+        description: "Bearer token to access these api endpoints",
+        scheme: "bearer",
+        bearerFormat: "JWT",
+      },
+    },
+  },
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
 };
 
 const openapiSpecification = swaggerJsdoc({
@@ -37,11 +54,10 @@ app.use("/swagger.json", (req, res) =>
   res.json(openapiSpecification).status(200)
 );
 app.all("*", verifyToken);
-
-app.use("/users", UsersRouter);
-app.use("/films", FilmsRouter);
-app.use("/reviews", ReviewsRouter);
 app.use("/auth", AuthRouter);
+app.use("/films", FilmsRouter);
+app.use("/users", UsersRouter);
+app.use("/reviews", ReviewsRouter);
 app.use((err, req, res, next) => {
   res.status(500).send(err);
 });

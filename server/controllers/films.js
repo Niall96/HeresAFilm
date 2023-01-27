@@ -1,11 +1,11 @@
 const { filmsService } = require("../services");
 
-async function getAll(req, res) {
-  const films = await filmsService.getAll();
-  if (films && films.length > 0) {
+async function getFilms(req, res) {
+  const films = await filmsService.getFilms();
+  if (films) {
     return res.status(200).json(films);
   }
-  res.status(204);
+  res.sendStatus(204);
 }
 
 async function getById(req, res) {
@@ -54,11 +54,11 @@ async function createFilm(req, res) {
     imageLocation,
     tmdbId
   );
-  res.sendStatus(201);
+  res.status(201);
 }
 
 module.exports = {
-  getAll,
+  getFilms,
   getById,
   getActors,
   getFilmReviews,

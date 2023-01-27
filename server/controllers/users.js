@@ -2,7 +2,10 @@ const { usersService } = require("../services");
 
 async function getAll(req, res) {
   const users = await usersService.getUsers();
-  res.status(200).json(users);
+  if (users) {
+    return res.status(200).json(users);
+  }
+  res.sendStatus(204);
 }
 
 async function getById(req, res) {
@@ -26,7 +29,7 @@ async function getUserByEmail(req, res) {
 async function deleteUser(req, res) {
   const { id } = req.params;
   await usersService.deleteUser(id);
-  res.sendStatus(200);
+  res.status(200);
 }
 
 async function getUserReviews(req, res) {
@@ -65,7 +68,7 @@ async function getUserFilms(req, res) {
 async function createUser(req, res) {
   const { emailAddress, username, password, dateOfBirth } = req.body;
   await usersService.createUser(emailAddress, username, password, dateOfBirth);
-  res.sendStatus(201);
+  res.status(201);
 }
 
 async function createUserFilm(req, res) {
@@ -77,21 +80,21 @@ async function createUserFilm(req, res) {
     watchlist,
     favorites
   );
-  res.sendStatus(201);
+  res.status(201);
 }
 
 async function updateUser(req, res) {
   const { id } = req.params;
   const { emailAddress, username, dateOfBirth } = req.body;
   await usersService.updateUser(id, emailAddress, username, dateOfBirth);
-  res.sendStatus(200);
+  res.status(200);
 }
 
 async function updateUserFilm(req, res) {
   const { id } = req.params;
   const { watched, watchlist, favorites } = req.body;
   await usersService.updateUserFilms(id, watched, watchlist, favorites);
-  res.sendStatus(200);
+  res.status(200);
 }
 
 module.exports = {

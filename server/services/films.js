@@ -1,6 +1,6 @@
 const prisma = require("../utils/prisma");
 
-async function getAll() {
+async function getFilms() {
   return await prisma.film.findMany();
 }
 
@@ -51,7 +51,7 @@ async function createFilm(
 }
 
 module.exports = {
-  getAll,
+  getFilms,
   getById,
   getActors,
   getFilmReviews,
