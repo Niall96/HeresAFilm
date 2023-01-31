@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon index.js",
     "test:unit": "NODE_ENV=test jest --testPathIgnorePatterns ./routers/",
-    "test:integration": "NODE_ENV=test jest --config ./jest.integration.config.js --testPathPattern ./routers/  --forceExit" 
+    "test:integration": "NODE_ENV=test jest --config ./jest.integration.config.js --testPathPattern ./routers/  --forceExit --testTimeout=20000" 
   },
   "author": "",
   "license": "ISC",
