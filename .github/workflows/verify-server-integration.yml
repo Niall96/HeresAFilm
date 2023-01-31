@@ -20,8 +20,6 @@ jobs:
     steps:
       - name: 🛎 Checkout
         uses: actions/checkout@v2
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
       - name: Install
         run: npm i
       - name: Test
