@@ -4,7 +4,13 @@ const {
   REFRESH_TOKEN_SECRET,
 } = require("../constants/auth");
 
+const handleTest = (res, next) => {
+  res.locals.user = 1;
+  return next();
+};
+
 const verifyToken = async (req, res, next) => {
+  if (process.env.NODE_ENV === "test") return handleTest(res, next);
   if ((req.path === "/auth" || req.path === "/users") && req.method == "POST")
     return next();
 

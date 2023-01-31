@@ -99,7 +99,7 @@ Films.get("/:filmId(\\d+)/actors", FilmsController.getActors);
  *                 required: true
  *                 description: The name for the film
  *                 example: Hard Boiled 2
- *               description:
+ *               synopsis:
  *                 type: string
  *                 required: true
  *                 description: The synopsis for the user
@@ -145,7 +145,7 @@ Films.post(
   "/",
   [
     check("filmName").exists().withMessage("The Film must have a name").trim(),
-    check("description")
+    check("synopsis")
       .isLength({ min: 10 })
       .withMessage("Provide a synopsis of the film")
       .exists()

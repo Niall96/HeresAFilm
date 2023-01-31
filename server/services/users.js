@@ -43,7 +43,7 @@ async function getUserByEmail(emailAddress) {
 
 async function createUser(emailAddress, username, password, dateOfBirth) {
   const hashedPassword = await bcrypt.hash(password, 10);
-  return await prisma.users.create({
+  await prisma.users.create({
     data: {
       username: username,
       user_password: hashedPassword,
@@ -87,7 +87,7 @@ async function deleteUser(id) {
 }
 
 async function getUserReviews(id) {
-  const reviews = await prisma.film_review.findMany({
+  return await prisma.film_review.findMany({
     where: {
       user_id: parseInt(id),
     },

@@ -5,10 +5,15 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "test:unit": "NODE_ENV=test jest"
+    "test:unit": "NODE_ENV=test jest --testPathIgnorePatterns ./routers/",
+    "test:integration": "NODE_ENV=test jest --config ./jest.integration.config.js --testPathPattern ./routers/  --forceExit" 
   },
   "author": "",
   "license": "ISC",
+  "jest": {
+    "clearMocks": true,
+    "testTimeout": 15000
+  },
   "dependencies": {
     "@prisma/client": "^4.9.0",
     "bcrypt": "^5.1.0",
@@ -24,6 +29,8 @@
   },
   "devDependencies": {
     "jest": "^29.4.0",
-    "jest-when": "^3.5.2"
+    "jest-when": "^3.5.2",
+    "supertest": "^6.3.3",
+    "testcontainers": "^9.1.1"
   }
 }

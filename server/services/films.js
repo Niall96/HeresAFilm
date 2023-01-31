@@ -37,7 +37,7 @@ async function createFilm(
   imageLocation,
   tmdbId
 ) {
-  return await prisma.film.create({
+  await prisma.film.create({
     data: {
       film_name: filmName,
       synopsis: synopsis,
