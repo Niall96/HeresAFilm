@@ -23,4 +23,6 @@ jobs:
       - name: Install
         run: npm i
       - name: Test
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: npm run test:integration
