@@ -1,10 +1,10 @@
 name: Verify Server Integration Tests
 
- on:
-   pull_request:
-     branches: [ develop, main ]
-     paths:
-       - 'server/**'
+on:
+  pull_request:
+    branches: [develop, main]
+    paths:
+      - "server/**"
 
 defaults:
   run:

@@ -1,14 +1,10 @@
 name: Verify Server Unit Tests
 
- on:
-   pull_request:
-     branches: [ develop, main ]
-     paths:
-       - 'server/**'
-
 on:
-  push:
+  pull_request:
     branches: [develop, main]
+    paths:
+      - "server/**"
 
 defaults:
   run:
