@@ -28,44 +28,24 @@ describe("/users", () => {
         expect.objectContaining({
           error: expect.arrayContaining([
             expect.objectContaining({
-              location: "check",
               param: "emailAddress",
-              msg: "the email must have minimum length of 3",
+              msg: "the email address must be 4 letters longer",
             }),
             expect.objectContaining({
-              location: "check",
-              param: "emailAddress",
-              msg: "the email must be in a valid email format",
-            }),
-            expect.objectContaining({
-              location: "check",
               param: "username",
-              msg: "the username must have minimum length of 6",
+              msg: "the name must have minimum length of 3",
             }),
             expect.objectContaining({
-              location: "check",
-              param: "username",
-              msg: "Invalid value",
-            }),
-            expect.objectContaining({
-              location: "check",
               param: "password",
               msg: "the password should have min and max length between 8-15",
             }),
             expect.objectContaining({
-              location: "check",
               param: "password",
               msg: "the password should have at least one number",
             }),
             expect.objectContaining({
-              location: "check",
               param: "password",
               msg: "the password should have at least one special character",
-            }),
-            expect.objectContaining({
-              location: "check",
-              param: "dateOfBirth",
-              msg: "Invalid value",
             }),
           ]),
         })

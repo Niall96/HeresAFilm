@@ -68,7 +68,7 @@ async function getUserFilms(req, res) {
 async function createUser(req, res) {
   const { emailAddress, username, password, dateOfBirth } = req.body;
   await usersService.createUser(emailAddress, username, password, dateOfBirth);
-  res.sendStatus(201);
+  res.status(201);
 }
 
 async function createUserFilm(req, res) {

@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { body } = require("express-validator");
+const { body, check } = require("express-validator");
 const { validateUtils } = require("../utils");
 const { UsersController } = require("../controllers");
 
@@ -129,25 +129,21 @@ Users.get("/:emailAddress", UsersController.getUserByEmail);
 Users.post(
   "/",
   [
-    body("emailAddress")
+    check("username")
       .isLength({ min: 3 })
-      .withMessage("the email must have minimum length of 3")
-      .isEmail()
-      .withMessage("the email must be in a valid email format")
+      .withMessage("the name must have minimum length of 3")
       .trim(),
-    body("username")
-      .isString()
-      .isLength({ min: 6 })
-      .withMessage("the username must have minimum length of 6")
-      .trim(),
-    body("password")
+    check("password")
       .isLength({ min: 8, max: 15 })
-      .withMessage("the password should have min and max length between 8-15")
+      .withMessage("your password should have min and max length between 8-15")
       .matches(/\d/)
-      .withMessage("the password should have at least one number")
+      .withMessage("your password should have at least one number")
       .matches(/[!@#$%^&*(),.?":{}|<>]/)
-      .withMessage("the password should have at least one special character"),
-    body("dateOfBirth").exists(),
+      .withMessage("your password should have at least one special character"),
+    check("emailAddress")
+      .isLength({ min: 4 })
+      .withMessage("the email address must be 4 letters longer")
+      .trim(),
   ],
   validateUtils.validate,
   UsersController.createUser
