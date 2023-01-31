@@ -1,0 +1,26 @@
+name: Verify Server Integration Tests
+
+# on:
+#   pull_request:
+#     branches: [ develop, main ]
+#     paths:
+#       - 'server/**'
+
+on:
+  push:
+    branches: [develop, main]
+
+defaults:
+  run:
+    working-directory: ./server
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛎 Checkout
+        uses: actions/checkout@v2
+      - name: Install
+        run: npm i
+      - name: Test
+        run: npm run test:integration
