@@ -2,8 +2,7 @@ name: Deploy Migrations
 
 on:
   push:
-    branches:
-      - main
+    branches: main
     paths:
       - "migrations/**"
 
