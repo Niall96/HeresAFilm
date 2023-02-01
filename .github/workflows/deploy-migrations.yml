@@ -3,8 +3,8 @@ name: Deploy Migrations
 on:
   push:
     branches: [develop, main]
-    paths:
-      - "migrations/**"
+    # paths:
+    #   - "migrations/**"
 
 jobs:
   migrate:
