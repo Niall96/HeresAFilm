@@ -1,10 +1,12 @@
 name: Deploy Migrations
+
 on:
   push:
     branches:
       - main
     paths:
       - "migrations/**"
+
 jobs:
   migrate:
     runs-on: ubuntu-latest
