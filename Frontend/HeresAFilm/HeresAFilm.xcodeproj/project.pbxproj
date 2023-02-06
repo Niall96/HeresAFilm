@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8050383B2991182100B79BBC /* HeresAFilmApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8050383A2991182100B79BBC /* HeresAFilmApp.swift */; };
-		8050383D2991182100B79BBC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8050383C2991182100B79BBC /* ContentView.swift */; };
 		8050383F2991182300B79BBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8050383E2991182300B79BBC /* Assets.xcassets */; };
 		805038432991182300B79BBC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 805038422991182300B79BBC /* Preview Assets.xcassets */; };
 		8050384D2991182500B79BBC /* HeresAFilmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8050384C2991182500B79BBC /* HeresAFilmTests.swift */; };
@@ -54,7 +53,6 @@
 /* Begin PBXFileReference section */
 		805038372991182100B79BBC /* HeresAFilm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeresAFilm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8050383A2991182100B79BBC /* HeresAFilmApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeresAFilmApp.swift; sourceTree = "<group>"; };
-		8050383C2991182100B79BBC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8050383E2991182300B79BBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		805038402991182300B79BBC /* HeresAFilm.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HeresAFilm.entitlements; sourceTree = "<group>"; };
 		805038422991182300B79BBC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -123,7 +121,6 @@
 				8050387229914BCF00B79BBC /* Components */,
 				8050386929911C5100B79BBC /* Views */,
 				8050383A2991182100B79BBC /* HeresAFilmApp.swift */,
-				8050383C2991182100B79BBC /* ContentView.swift */,
 				8050383E2991182300B79BBC /* Assets.xcassets */,
 				805038402991182300B79BBC /* HeresAFilm.entitlements */,
 				805038412991182300B79BBC /* Preview Content */,
@@ -324,7 +321,6 @@
 				8050386629911C4800B79BBC /* JoinLogin.swift in Sources */,
 				8050386F29913FD300B79BBC /* Join.swift in Sources */,
 				8050387D29914D9400B79BBC /* JoinViewModel.swift in Sources */,
-				8050383D2991182100B79BBC /* ContentView.swift in Sources */,
 				8050387829914C1200B79BBC /* Passwordfield.swift in Sources */,
 				8050383B2991182100B79BBC /* HeresAFilmApp.swift in Sources */,
 				8050387429914BED00B79BBC /* EnterTextfield.swift in Sources */,
