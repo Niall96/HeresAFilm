@@ -156,6 +156,7 @@
 		8050386929911C5100B79BBC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				805038812991601000B79BBC /* Dashboard */,
 				805038802991590A00B79BBC /* JoinLogin */,
 			);
 			path = Views;
@@ -186,6 +187,13 @@
 				8050386E29913FD300B79BBC /* Join.swift */,
 			);
 			path = JoinLogin;
+			sourceTree = "<group>";
+		};
+		805038812991601000B79BBC /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Dashboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
