@@ -11,7 +11,7 @@ import SwiftUI
 struct HeresAFilmApp: App {
     var body: some Scene {
         WindowGroup {
-            JoinLogin()
+            Dashboard()
         }
     }
 }
