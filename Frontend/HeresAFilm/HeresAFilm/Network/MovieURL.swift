@@ -14,6 +14,6 @@ enum MovieURL: String {
     case topRated = "top_rated"
     
     public var urlString: String {
-          "\(MovieDownloadManager.baseURL)\(self.rawValue)?api_key=\(API.key)&language=en-US&page=1"
+        "\(MovieDownloadManager.baseURL)\(self.rawValue)?api_key=\(TMDB_API.key)&language=en-US"
     }
 }

@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Alamofire
+
 extension Join {
     @MainActor class JoinViewModel: ObservableObject {
         @Published var userName = ""
@@ -38,6 +40,24 @@ extension Join {
             //let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
             let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
             return emailPredicate.evaluate(with: string)
+        }
+        
+        func createUser() {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/YYYY"
+            let dateString = dateFormatter.string(from: dateOfBirth)
+            print(dateString)
+            let params: [String: Any] = [
+                "username": userName,
+                "email_address": emailAddress,
+                "user_password": password,
+                "date_of_birth": dateString]
+            print(params)
+            AF.request("\(API.baseURL)users", method: .post, parameters: params, encoding: JSONEncoding.default)
+                .responseJSON { (response) in
+                    print(response.response as Any)
+                    print(response)
+                }
         }
     }
 }

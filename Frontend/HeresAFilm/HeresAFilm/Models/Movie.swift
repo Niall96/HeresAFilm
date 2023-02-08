@@ -35,7 +35,7 @@ struct Movie: Codable, Identifiable {
         guard let title = title, let lang = original_language else {
             return ""
         }
-        return "\(title)(\(lang))"
+        return "\(title)"
     }
     var voteAverage: Double {
         if let avg = vote_average {

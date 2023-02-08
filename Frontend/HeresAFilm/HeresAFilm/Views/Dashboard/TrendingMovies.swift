@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PopularMovies: View {
+struct TrendingMovies: View {
     @State private var searchTerm = ""
     @State private var selectionIndex = 0
     @State private var tabs = ["Now Playing", "Upcoming", "Trending"]
@@ -79,6 +79,6 @@ struct PopularMovies: View {
 
 struct PopularMovies_Previews: PreviewProvider {
     static var previews: some View {
-        PopularMovies()
+        TrendingMovies()
     }
 }

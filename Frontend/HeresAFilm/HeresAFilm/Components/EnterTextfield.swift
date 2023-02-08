@@ -19,6 +19,7 @@ struct EnterTextfield: View {
         TextField(description, text: $text)
             .padding(10)
             .border(Color.blue, width: 5)
+            .textInputAutocapitalization(.never)
     }
 }
 

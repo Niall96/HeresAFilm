@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct Dashboard: View {
     var body: some View {
@@ -13,7 +14,7 @@ struct Dashboard: View {
             ZStack {
                 Color.red.opacity(0.2).ignoresSafeArea()
                 VStack{
-                    NavigationLink(destination: PopularMovies().navigationTitle("What's Good")) {
+                    NavigationLink(destination: TrendingMovies().navigationTitle("What's Good")) {
                         Text("Popular Movies")
                             .font(.largeTitle)
                             .fontWeight(.bold)
@@ -27,6 +28,15 @@ struct Dashboard: View {
                     }
                 }
             }.navigationTitle("Home")
+                .onAppear {
+                    let params: [String: String] = [
+                        "emailAddress": "emailAddress",
+                        "password": "password"]
+                    AF.request( "\(API.baseURL)authenticate", method: .post, parameters: params, encoding: JSONEncoding.default)
+                        .responseJSON{ (response) in
+                            print(response)
+                        }
+                }
         }.edgesIgnoringSafeArea(.all)
     }
 }

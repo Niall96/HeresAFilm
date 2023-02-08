@@ -22,7 +22,7 @@ final class MovieReviewsManager: ObservableObject {
     }
     
     private func getReviews(for movie: Movie) {
-        let urlString = "\(Self.baseURL)\(movie.id ?? 100)/reviews?api_key=\(API.key)"
+        let urlString = "\(Self.baseURL)\(movie.id ?? 100)/reviews?api_key=\(TMDB_API.key)"
         NetworkManager<ReviewResponse>.fetch(from: urlString) { (result) in
             switch result {
             case .success(let reviewRespose):

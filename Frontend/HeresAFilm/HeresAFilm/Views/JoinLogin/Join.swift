@@ -26,7 +26,7 @@ struct Join: View {
                     .padding(10)
                     .border(Color.blue, width: 5)
                 Button {
-                    
+                    viewModel.createUser()
                 } label: {
                     Text("Sign Up")
                         .foregroundColor(.white)
