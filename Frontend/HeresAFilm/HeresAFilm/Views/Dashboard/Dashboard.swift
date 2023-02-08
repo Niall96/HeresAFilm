@@ -9,8 +9,13 @@ import SwiftUI
 import Alamofire
 
 struct Dashboard: View {
+    @State var user: User
+    
+    init(user: User) {
+        self.user = user
+    }
+    
     var body: some View {
-        NavigationView {
             ZStack {
                 Color.red.opacity(0.2).ignoresSafeArea()
                 VStack{
@@ -27,22 +32,20 @@ struct Dashboard: View {
                             .foregroundColor(.black)
                     }
                 }
-            }.navigationTitle("Home")
-                .onAppear {
-                    let params: [String: String] = [
-                        "emailAddress": "emailAddress",
-                        "password": "password"]
-                    AF.request( "\(API.baseURL)authenticate", method: .post, parameters: params, encoding: JSONEncoding.default)
-                        .responseJSON{ (response) in
-                            print(response)
-                        }
-                }
-        }.edgesIgnoringSafeArea(.all)
-    }
+            }.navigationTitle("Home: \(user.username)")
+            .edgesIgnoringSafeArea(.all)
+//                .onAppear {
+//                    APIManager().getUser { result in
+//                        if result != nil {
+//                            user = result!
+//                        }
+//                    }
+//                }
+        }
 }
 
 struct Dashboard_Previews: PreviewProvider {
     static var previews: some View {
-        Dashboard()
+        Dashboard(user: User(id: 5, username: "", email_address: ""))
     }
 }

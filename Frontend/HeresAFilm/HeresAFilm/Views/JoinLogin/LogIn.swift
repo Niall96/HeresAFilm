@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct LogIn: View {
-    @State private var emailAddress = ""
-    @State private var password = ""
+    @StateObject private var viewModel = LogInViewModel()
 
     var body: some View {
         ZStack {
@@ -19,11 +18,11 @@ struct LogIn: View {
                     .resizable()
                     .frame(width: 50, height: 50)
                     .foregroundColor(.blue)
-                EnterTextfield(title: "Email Address", description: "Enter Email Address", text: $emailAddress)
-                Passwordfield(title: "Password", description: "Enter Password", text: $password)
+                EnterTextfield(title: "Email Address", description: "Enter Email Address", text: $viewModel.emailAddress)
+                Passwordfield(title: "Password", description: "Enter Password", text: $viewModel.password)
                 Spacer()
                 Button {
-                    //Logs user in
+                    viewModel.signIn()
                 } label: {
                     Text("Log In")
                         .foregroundColor(.white)
@@ -43,7 +42,8 @@ struct LogIn: View {
                 Spacer()
             }
             .padding()
-        }.ignoresSafeArea()
+        }.ignoresSafeArea(.container)
+        NavigationLink(destination: Dashboard(user: viewModel.user).navigationBarBackButtonHidden(true), isActive: $viewModel.userExists) { EmptyView() }
     }
 }
 

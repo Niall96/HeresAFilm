@@ -50,6 +50,21 @@
 		8072F6C22993A65D0023E17D /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072F6C12993A65D0023E17D /* API.swift */; };
 		8072F6C32993A65D0023E17D /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072F6C12993A65D0023E17D /* API.swift */; };
 		8072F6C42993A65D0023E17D /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072F6C12993A65D0023E17D /* API.swift */; };
+		8072F6C62993DEC70023E17D /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072F6C52993DEC70023E17D /* LogInViewModel.swift */; };
+		8072F6C72993DEC70023E17D /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072F6C52993DEC70023E17D /* LogInViewModel.swift */; };
+		8072F6C82993DEC70023E17D /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072F6C52993DEC70023E17D /* LogInViewModel.swift */; };
+		8072F6D62993EB8C0023E17D /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072F6D52993EB8C0023E17D /* Tokens.swift */; };
+		8072F6D72993EB8C0023E17D /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072F6D52993EB8C0023E17D /* Tokens.swift */; };
+		8072F6D82993EB8C0023E17D /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072F6D52993EB8C0023E17D /* Tokens.swift */; };
+		8072F6DA2993F2BA0023E17D /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072F6D92993F2BA0023E17D /* APIManager.swift */; };
+		8072F6DB2993F2BA0023E17D /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072F6D92993F2BA0023E17D /* APIManager.swift */; };
+		8072F6DC2993F2BA0023E17D /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072F6D92993F2BA0023E17D /* APIManager.swift */; };
+		8072F6DE2993F35C0023E17D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072F6DD2993F35C0023E17D /* User.swift */; };
+		8072F6DF2993F35C0023E17D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072F6DD2993F35C0023E17D /* User.swift */; };
+		8072F6E02993F35C0023E17D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072F6DD2993F35C0023E17D /* User.swift */; };
+		8072F6E32993FA140023E17D /* UserFilms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072F6E22993FA140023E17D /* UserFilms.swift */; };
+		8072F6E42993FA140023E17D /* UserFilms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072F6E22993FA140023E17D /* UserFilms.swift */; };
+		8072F6E52993FA140023E17D /* UserFilms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072F6E22993FA140023E17D /* UserFilms.swift */; };
 		80B4480429924C4A00F5F00A /* MovieURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B4480329924C4A00F5F00A /* MovieURL.swift */; };
 		80B4480529924C4A00F5F00A /* MovieURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B4480329924C4A00F5F00A /* MovieURL.swift */; };
 		80B4480629924C4A00F5F00A /* MovieURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B4480329924C4A00F5F00A /* MovieURL.swift */; };
@@ -131,6 +146,11 @@
 		8050389029916C5E00B79BBC /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		8050389429916D8A00B79BBC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8072F6C12993A65D0023E17D /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		8072F6C52993DEC70023E17D /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
+		8072F6D52993EB8C0023E17D /* Tokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
+		8072F6D92993F2BA0023E17D /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		8072F6DD2993F35C0023E17D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8072F6E22993FA140023E17D /* UserFilms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFilms.swift; sourceTree = "<group>"; };
 		80B4480329924C4A00F5F00A /* MovieURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieURL.swift; sourceTree = "<group>"; };
 		80B4480729924D1C00F5F00A /* MovieDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDownloadManager.swift; sourceTree = "<group>"; };
 		80B4480B29924FB200F5F00A /* MovieReviewsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieReviewsManager.swift; sourceTree = "<group>"; };
@@ -257,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				8050387C29914D9400B79BBC /* JoinViewModel.swift */,
+				8072F6C52993DEC70023E17D /* LogInViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -286,12 +307,12 @@
 		80503882299162A400B79BBC /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				8072F6D02993E57E0023E17D /* API */,
 				80503883299162BE00B79BBC /* TMDB_API.swift */,
 				8050389429916D8A00B79BBC /* NetworkManager.swift */,
 				80B4480329924C4A00F5F00A /* MovieURL.swift */,
 				80B4480729924D1C00F5F00A /* MovieDownloadManager.swift */,
 				80B4480B29924FB200F5F00A /* MovieReviewsManager.swift */,
-				8072F6C12993A65D0023E17D /* API.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -302,8 +323,20 @@
 				805038882991698F00B79BBC /* Movie.swift */,
 				8050388C29916BD200B79BBC /* Cast.swift */,
 				8050389029916C5E00B79BBC /* Review.swift */,
+				8072F6D52993EB8C0023E17D /* Tokens.swift */,
+				8072F6DD2993F35C0023E17D /* User.swift */,
+				8072F6E22993FA140023E17D /* UserFilms.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8072F6D02993E57E0023E17D /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8072F6C12993A65D0023E17D /* API.swift */,
+				8072F6D92993F2BA0023E17D /* APIManager.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		80B4480F2992515700F5F00A /* Utils */ = {
@@ -418,6 +451,8 @@
 			mainGroup = 8050382E2991182100B79BBC;
 			packageReferences = (
 				8050389829916EA700B79BBC /* XCRemoteSwiftPackageReference "Alamofire" */,
+				8072F6CD2993E4350023E17D /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+				8072F6E12993F9280023E17D /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = 805038382991182100B79BBC /* Products */;
 			projectDirPath = "";
@@ -466,14 +501,17 @@
 				8050386629911C4800B79BBC /* JoinLogin.swift in Sources */,
 				80B44815299257D600F5F00A /* ImageCache.swift in Sources */,
 				8050386F29913FD300B79BBC /* Join.swift in Sources */,
+				8072F6DA2993F2BA0023E17D /* APIManager.swift in Sources */,
 				80B4482C299280C600F5F00A /* MovieDetails.swift in Sources */,
 				80B448192992635F00F5F00A /* EnvironmentValues+ImageCache.swift in Sources */,
+				8072F6DE2993F35C0023E17D /* User.swift in Sources */,
 				80B4480429924C4A00F5F00A /* MovieURL.swift in Sources */,
 				8072F6C22993A65D0023E17D /* API.swift in Sources */,
 				8050388D29916BD200B79BBC /* Cast.swift in Sources */,
 				805038892991698F00B79BBC /* Movie.swift in Sources */,
 				80B448112992517200F5F00A /* ImageLoader.swift in Sources */,
 				8050387D29914D9400B79BBC /* JoinViewModel.swift in Sources */,
+				8072F6C62993DEC70023E17D /* LogInViewModel.swift in Sources */,
 				8050387829914C1200B79BBC /* Passwordfield.swift in Sources */,
 				8050389129916C5E00B79BBC /* Review.swift in Sources */,
 				8050383B2991182100B79BBC /* HeresAFilmApp.swift in Sources */,
@@ -483,10 +521,12 @@
 				80B44834299298BB00F5F00A /* DiscoverMovies.swift in Sources */,
 				80B4480829924D1C00F5F00A /* MovieDownloadManager.swift in Sources */,
 				8050387429914BED00B79BBC /* EnterTextfield.swift in Sources */,
+				8072F6E32993FA140023E17D /* UserFilms.swift in Sources */,
 				80B4481D299263D200F5F00A /* AsyncImage.swift in Sources */,
 				80503884299162BE00B79BBC /* TMDB_API.swift in Sources */,
 				80B4480C29924FB200F5F00A /* MovieReviewsManager.swift in Sources */,
 				8050386B2991232600B79BBC /* LogIn.swift in Sources */,
+				8072F6D62993EB8C0023E17D /* Tokens.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,14 +539,17 @@
 				8050387E29914D9400B79BBC /* JoinViewModel.swift in Sources */,
 				80B44816299257D600F5F00A /* ImageCache.swift in Sources */,
 				8050384D2991182500B79BBC /* HeresAFilmTests.swift in Sources */,
+				8072F6DB2993F2BA0023E17D /* APIManager.swift in Sources */,
 				80B4482D299280C600F5F00A /* MovieDetails.swift in Sources */,
 				80B4481A2992635F00F5F00A /* EnvironmentValues+ImageCache.swift in Sources */,
+				8072F6DF2993F35C0023E17D /* User.swift in Sources */,
 				80B4480529924C4A00F5F00A /* MovieURL.swift in Sources */,
 				8072F6C32993A65D0023E17D /* API.swift in Sources */,
 				8050388E29916BD200B79BBC /* Cast.swift in Sources */,
 				8050388A2991698F00B79BBC /* Movie.swift in Sources */,
 				80B448122992517200F5F00A /* ImageLoader.swift in Sources */,
 				8050387029913FD300B79BBC /* Join.swift in Sources */,
+				8072F6C72993DEC70023E17D /* LogInViewModel.swift in Sources */,
 				8050386C2991232600B79BBC /* LogIn.swift in Sources */,
 				8050389229916C5E00B79BBC /* Review.swift in Sources */,
 				8050387529914BED00B79BBC /* EnterTextfield.swift in Sources */,
@@ -516,10 +559,12 @@
 				80B44835299298BB00F5F00A /* DiscoverMovies.swift in Sources */,
 				80B4480929924D1C00F5F00A /* MovieDownloadManager.swift in Sources */,
 				8050386729911C4800B79BBC /* JoinLogin.swift in Sources */,
+				8072F6E42993FA140023E17D /* UserFilms.swift in Sources */,
 				80B4481E299263D200F5F00A /* AsyncImage.swift in Sources */,
 				80503885299162BE00B79BBC /* TMDB_API.swift in Sources */,
 				80B4480D29924FB200F5F00A /* MovieReviewsManager.swift in Sources */,
 				8050387929914C1200B79BBC /* Passwordfield.swift in Sources */,
+				8072F6D72993EB8C0023E17D /* Tokens.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,9 +572,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8072F6C82993DEC70023E17D /* LogInViewModel.swift in Sources */,
 				80B4481F299263D200F5F00A /* AsyncImage.swift in Sources */,
 				8050386829911C4800B79BBC /* JoinLogin.swift in Sources */,
 				8050387129913FD300B79BBC /* Join.swift in Sources */,
+				8072F6E52993FA140023E17D /* UserFilms.swift in Sources */,
+				8072F6E02993F35C0023E17D /* User.swift in Sources */,
 				8050387F29914D9400B79BBC /* JoinViewModel.swift in Sources */,
 				8050389729916D8A00B79BBC /* NetworkManager.swift in Sources */,
 				80B448232992668800F5F00A /* TrendingMovies.swift in Sources */,
@@ -538,6 +586,7 @@
 				80B4480E29924FB200F5F00A /* MovieReviewsManager.swift in Sources */,
 				80B4480629924C4A00F5F00A /* MovieURL.swift in Sources */,
 				805038592991182500B79BBC /* HeresAFilmUITestsLaunchTests.swift in Sources */,
+				8072F6DC2993F2BA0023E17D /* APIManager.swift in Sources */,
 				8050388B2991698F00B79BBC /* Movie.swift in Sources */,
 				8050389329916C5E00B79BBC /* Review.swift in Sources */,
 				80B4482E299280C600F5F00A /* MovieDetails.swift in Sources */,
@@ -549,6 +598,7 @@
 				80B44836299298BB00F5F00A /* DiscoverMovies.swift in Sources */,
 				80B448132992517200F5F00A /* ImageLoader.swift in Sources */,
 				80B44817299257D600F5F00A /* ImageCache.swift in Sources */,
+				8072F6D82993EB8C0023E17D /* Tokens.swift in Sources */,
 				8050387629914BED00B79BBC /* EnterTextfield.swift in Sources */,
 				8050388F29916BD200B79BBC /* Cast.swift in Sources */,
 				80503886299162BE00B79BBC /* TMDB_API.swift in Sources */,
@@ -896,6 +946,22 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.0.0;
+			};
+		};
+		8072F6CD2993E4350023E17D /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		8072F6E12993F9280023E17D /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

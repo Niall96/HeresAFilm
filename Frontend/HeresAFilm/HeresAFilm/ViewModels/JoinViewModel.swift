@@ -43,20 +43,15 @@ extension Join {
         }
         
         func createUser() {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd/MM/YYYY"
-            let dateString = dateFormatter.string(from: dateOfBirth)
-            print(dateString)
             let params: [String: Any] = [
                 "username": userName,
-                "email_address": emailAddress,
-                "user_password": password,
-                "date_of_birth": dateString]
+                "emailAddress": emailAddress,
+                "Password": password,
+                "dateOfBirth": dateOfBirth]
             print(params)
             AF.request("\(API.baseURL)users", method: .post, parameters: params, encoding: JSONEncoding.default)
                 .responseJSON { (response) in
-                    print(response.response as Any)
-                    print(response)
+                    
                 }
         }
     }
