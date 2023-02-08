@@ -142,8 +142,7 @@ Users.post(
       .withMessage("your password should have at least one special character"),
     check("emailAddress")
       .isLength({ min: 4 })
-      .withMessage("the email address must be 4 letters longer")
-      .trim(),
+      .withMessage("the email address must be 4 letters longer"),
   ],
   validateUtils.validate,
   UsersController.createUser

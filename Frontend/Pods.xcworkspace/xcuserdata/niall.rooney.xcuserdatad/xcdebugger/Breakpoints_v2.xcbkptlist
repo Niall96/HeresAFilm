@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "86F3F151-F0CB-400B-82D8-B2C88C9281E6"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "51C90227-6739-4500-BA95-2F4EA3AA0196"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HeresAFilm/HeresAFilm/ViewModels/JoinViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "createUser()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "51C90227-6739-4500-BA95-2F4EA3AA0196 - 3a82eea20dbabbea"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HeresAFilm.Join.JoinViewModel.createUser() -&gt; ()"
+                  moduleName = "HeresAFilm"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/niall.rooney/Documents/GitHub/HeresAFilm/Frontend/HeresAFilm/HeresAFilm/ViewModels/JoinViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "2212">
+               </Location>
+               <Location
+                  uuid = "51C90227-6739-4500-BA95-2F4EA3AA0196 - db106e3555e8e797"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in HeresAFilm.Join.JoinViewModel.createUser() -&gt; ()"
+                  moduleName = "HeresAFilm"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/niall.rooney/Documents/GitHub/HeresAFilm/Frontend/HeresAFilm/HeresAFilm/ViewModels/JoinViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "702545CB-B91E-40EA-8A7E-A31AD004E1BF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HeresAFilm/HeresAFilm/ViewModels/JoinViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "createUser()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "946ABD56-9492-4896-9CAE-737AFCF40253"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HeresAFilm/HeresAFilm/ViewModels/JoinViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "createUser()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
