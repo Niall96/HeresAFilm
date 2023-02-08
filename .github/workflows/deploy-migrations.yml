@@ -1,7 +1,7 @@
 name: Deploy Migrations
 
 on:
-  push:
+  workflow_dispatch:
     branches: [develop, main]
     paths:
       - "migrations/**"
