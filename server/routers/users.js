@@ -128,24 +128,24 @@ Users.get("/:emailAddress", UsersController.getUserByEmail);
  */
 Users.post(
   "/",
-  // [
-  //   check("username")
-  //     .isLength({ min: 3 })
-  //     .withMessage("the name must have minimum length of 3")
-  //     .trim(),
-  //   check("password")
-  //     .isLength({ min: 8, max: 15 })
-  //     .withMessage("your password should have min and max length between 8-15")
-  //     .matches(/\d/)
-  //     .withMessage("your password should have at least one number")
-  //     .matches(/[!@#$%^&*(),.?":{}|<>]/)
-  //     .withMessage("your password should have at least one special character"),
-  //   check("emailAddress")
-  //     .isLength({ min: 4 })
-  //     .withMessage("the email address must be 4 letters longer")
-  //     .trim(),
-  // ],
-  // validateUtils.validate,
+  [
+    check("username")
+      .isLength({ min: 3 })
+      .withMessage("the name must have minimum length of 3")
+      .trim(),
+    check("password")
+      .isLength({ min: 8, max: 15 })
+      .withMessage("your password should have min and max length between 8-15")
+      .matches(/\d/)
+      .withMessage("your password should have at least one number")
+      .matches(/[!@#$%^&*(),.?":{}|<>]/)
+      .withMessage("your password should have at least one special character"),
+    check("emailAddress")
+      .isLength({ min: 4 })
+      .withMessage("the email address must be 4 letters longer")
+      .trim(),
+  ],
+  validateUtils.validate,
   UsersController.createUser
 );
 /**
