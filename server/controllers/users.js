@@ -67,6 +67,10 @@ async function getUserFilms(req, res) {
 
 async function createUser(req, res) {
   const { emailAddress, username, password, dateOfBirth } = req.body;
+  const emailExists = await usersService.getUserByEmail(emailAddress);
+  if (emailExists) {
+    return res.sendStatus(409);
+  }
   await usersService.createUser(emailAddress, username, password, dateOfBirth);
   res.sendStatus(201);
 }
