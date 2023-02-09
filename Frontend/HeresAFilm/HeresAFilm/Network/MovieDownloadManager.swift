@@ -29,6 +29,17 @@ final class MovieDownloadManager: ObservableObject {
         getMovies(movieURL: .topRated)
     }
     
+    func getSimilar(movieId: Int) {
+        NetworkManager<MovieResponse>.fetch(from: "\(MovieDownloadManager.baseURL)\(movieId)/similar?api_key=\(TMDB_API.key)&language=en-US") { (result) in
+            switch result {
+            case .success(let movieRespose):
+                self.movies = movieRespose.results
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
     func getCast(for movie: Movie) {
         let urlString = "\(Self.baseURL)\(movie.id ?? 100)/credits?api_key=\(TMDB_API.key)&language=en-US"
         NetworkManager<CastResponse>.fetch(from: urlString) { (result) in

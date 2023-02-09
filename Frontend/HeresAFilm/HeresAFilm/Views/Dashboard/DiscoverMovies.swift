@@ -44,7 +44,8 @@ struct DiscoverMovies: View {
                 })
             )
             .onAppear {
-                movieManager.getPopular()
+                let random = Int.random(in: 1..<99999)
+                movieManager.getSimilar(movieId: random)
             }
         }
     }
