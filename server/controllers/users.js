@@ -29,7 +29,7 @@ async function getUserByEmail(req, res) {
 async function deleteUser(req, res) {
   const { id } = req.params;
   await usersService.deleteUser(id);
-  res.status(200);
+  res.sendStatus(200);
 }
 
 async function getUserReviews(req, res) {
