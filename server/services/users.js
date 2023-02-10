@@ -99,6 +99,9 @@ async function getUserFilms(filter) {
     where: filter,
     select: {
       film_id: true,
+      favorites: true,
+      watched: true,
+      watchlist: true,
     },
   });
 }
