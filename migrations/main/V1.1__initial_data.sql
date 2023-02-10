@@ -10,15 +10,5 @@ INSERT INTO public.film ( film_name, synopsis, genre, release_date , rating, ima
 ( 'Toy Story','A cowboy doll is profoundly threatened and jealous when a new spaceman action figure supplants him as top toy in a boys bedroom.','Animation', '1995-11-19',8.3, 'https://www.imdb.com/title/tt0114709/mediaviewer/rm3813007616/?ref_=tt_ov_i',862),
 ( 'Scarface', 'In 1980 Miami, a determined Cuban immigrant takes over a drug cartel and succumbs to greed.', 'Crime', '1983-12-01', 8.3, 'https://www.imdb.com/title/tt0086250/mediaviewer/rm512766208/?ref_=tt_ov_i',111);
 
-INSERT INTO public.actors ( actor_name, image_location, tmdb_id) VALUES
-('Marlon Brando','https://www.imdb.com/name/nm0000008/mediaviewer/rm1238402304/?ref_=nm_ov_ph', 3084),
-('Al Pacino','https://www.imdb.com/name/nm0000199/mediaviewer/rm3894385408/?ref_=nm_ov_ph',1158),
-('Diane Keaton','https://www.imdb.com/name/nm0000473/mediaviewer/rm994733056/?ref_=nm_ov_ph',3092),
-('Tim Robbins','https://www.imdb.com/name/nm0000209/mediaviewer/rm3789593344/?ref_=nm_ov_ph',504),
-('Morgan Freeman','https://www.imdb.com/name/nm0000151/mediaviewer/rm3587479040/?ref_=nm_ov_ph',192),
-('Christian Bale','https://www.imdb.com/name/nm0000288/mediaviewer/rm3114052352/?ref_=nm_ov_ph',3894),
-('Heath Ledger', 'https://www.imdb.com/name/nm0005132/mediaviewer/rm1308400384/?ref_=nm_ov_ph',1810),
-('Michael Caine','https://www.imdb.com/name/nm0000323/mediaviewer/rm3495729664/?ref_=nm_ov_ph',3895),
-('Maggie Gyllenhaal','https://www.imdb.com/name/nm0350454/mediaviewer/rm2131660544/?ref_=nm_ov_ph',1579);
 
 
