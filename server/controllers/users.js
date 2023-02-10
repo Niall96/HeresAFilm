@@ -84,7 +84,7 @@ async function createUserFilm(req, res) {
     watchlist,
     favorites
   );
-  res.status(201);
+  res.sendStatus(201);
 }
 
 async function updateUser(req, res) {
