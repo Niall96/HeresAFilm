@@ -14,34 +14,12 @@ model actors {
   image_location String @db.VarChar
 }
 
-model film {
-  id             Int           @id @default(autoincrement())
-  film_name      String        @db.VarChar
-  synopsis       String        @db.VarChar
-  genre          String        @db.VarChar
-  release_date   DateTime?     @db.Date
-  rating         Decimal       @db.Decimal
-  image_location String        @db.VarChar
-  tmdb_id        Int
-  film_actors    film_actors[]
-  film_review    film_review[]
-  user_films     user_films[]
-}
-
-model film_actors {
-  id       Int   @id @default(autoincrement())
-  film_id  Int?
-  actor_id Int[]
-  film     film? @relation(fields: [film_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "film_id")
-}
-
 model film_review {
   id          Int     @id @default(autoincrement())
   film_id     Int?
   user_id     Int?
   description String  @db.VarChar
   rating      Decimal @db.Decimal
-  film        film?   @relation(fields: [film_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "film_id")
   users       users?  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_id")
 }
 
@@ -67,7 +45,6 @@ model user_films {
   watched   Boolean?
   watchlist Boolean?
   favorites Boolean?
-  film      film?    @relation(fields: [film_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "film_id")
   users     users?   @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_id")
 }
 
