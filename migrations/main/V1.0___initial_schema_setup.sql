@@ -7,17 +7,6 @@ date_of_birth date,
 created timestamp DEFAULT CURRENT_TIMESTAMP 
 );
 
-CREATE TABLE IF NOT EXISTS Film(
-id SERIAL PRIMARY KEY,
-film_name VARCHAR NOT NULL,
-synopsis VARCHAR NOT NULL,
-genre VARCHAR NOT NULL,
-release_date DATE,
-rating DECIMAL NOT NULL,
-image_location VARCHAR NOT NULL,
-tmdb_id int NOT NULL
-);
-
 CREATE TABLE IF NOT EXISTS Film_review(
 id SERIAL PRIMARY KEY,
 film_id int,
