@@ -53,14 +53,14 @@ async function createUser(emailAddress, username, password, dateOfBirth) {
   });
 }
 
-async function createUserFilm(userId, filmId, watched, watchlist, favorites) {
+async function createUserFilm(userId, filmId, watched, watchlist, favorite) {
   return await prisma.user_films.create({
     data: {
       user_id: userId,
       film_id: filmId,
       watched: watched,
       watchlist: watchlist,
-      favorites: favorites,
+      favorites: favorite,
     },
   });
 }
@@ -103,7 +103,7 @@ async function getUserFilms(filter) {
   });
 }
 
-async function updateUserFilms(id, watched, watchlist, favorites) {
+async function updateUserFilms(id, watched, watchlist, favorite) {
   return await prisma.user_films.update({
     where: {
       id: parseInt(id),
@@ -111,7 +111,7 @@ async function updateUserFilms(id, watched, watchlist, favorites) {
     data: {
       watched: watched,
       watchlist: watchlist,
-      favorites: favorites,
+      favorites: favorite,
     },
   });
 }

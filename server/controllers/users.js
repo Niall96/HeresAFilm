@@ -76,13 +76,13 @@ async function createUser(req, res) {
 }
 
 async function createUserFilm(req, res) {
-  const { userId, filmId, watched, watchlist, favorites } = req.body;
+  const { userId, filmId, watched, watchlist, favorite } = req.body;
   await usersService.createUserFilm(
     userId,
     filmId,
     watched,
     watchlist,
-    favorites
+    favorite
   );
   res.sendStatus(201);
 }
@@ -96,8 +96,8 @@ async function updateUser(req, res) {
 
 async function updateUserFilm(req, res) {
   const { id } = req.params;
-  const { watched, watchlist, favorites } = req.body;
-  await usersService.updateUserFilms(id, watched, watchlist, favorites);
+  const { watched, watchlist, favorite } = req.body;
+  await usersService.updateUserFilms(id, watched, watchlist, favorite);
   res.status(200);
 }
 

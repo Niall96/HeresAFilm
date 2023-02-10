@@ -350,7 +350,7 @@ Users.get("/:id(\\d+)/films", UsersController.getUserFilms);
  *                 required: true
  *                 description: Boolean check if the film is on the user's watchlist
  *                 example: true
- *               favorites:
+ *               favorite:
  *                 type: boolean
  *                 required: true
  *                 description: Boolean check if the film is a favourite film of the user
@@ -410,7 +410,7 @@ Users.post(
  *                 required: true
  *                 description: Boolean check if the film is on the user's watchlist
  *                 example: true
- *               favorites:
+ *               favorite:
  *                 type: boolean
  *                 required: true
  *                 description: Boolean check if the film is a favourite film of the user
