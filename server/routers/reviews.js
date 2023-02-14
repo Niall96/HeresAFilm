@@ -27,10 +27,10 @@ const Reviews = Router();
  *                 type: number
  *                 required: true
  *                 description: The unique id of the film
- *               rating:
- *                 type: number
+ *  *            username:
+ *                 type: string
  *                 required: true
- *                 description: The user rating for the film
+ *                 description: The unique name for the user posting review
  *               description:
  *                 type: string
  *                 required: true
@@ -52,7 +52,6 @@ Reviews.post(
   [
     check("userId").isNumeric(),
     check("filmId").isNumeric(),
-    check("rating").isNumeric().withMessage("The rating must be numerical "),
     check("description")
       .isLength({ min: 1, max: 200 })
       .withMessage("The review must have a description.")
