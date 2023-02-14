@@ -27,7 +27,7 @@ const Reviews = Router();
  *                 type: number
  *                 required: true
  *                 description: The unique id of the film
- *  *            username:
+ *               username:
  *                 type: string
  *                 required: true
  *                 description: The unique name for the user posting review
