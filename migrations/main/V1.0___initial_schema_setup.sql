@@ -9,8 +9,8 @@ created timestamp DEFAULT CURRENT_TIMESTAMP
 
 CREATE TABLE IF NOT EXISTS Film_review(
 id SERIAL PRIMARY KEY,
-film_id int NOT NULL,
-user_id int NOT NULL,
+film_id int,
+user_id int,
 username varchar NOT NULL
 CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES users (id),
 description VARCHAR NOT NULL,

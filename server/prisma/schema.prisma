@@ -18,8 +18,9 @@ model film_review {
   id          Int     @id @default(autoincrement())
   film_id     Int?
   user_id     Int?
+  username    String  @db.VarChar
   description String  @db.VarChar
-  rating      Decimal @db.Decimal
+  created     DateTime?     @default(now()) @db.Timestamp(6)
   users       users?  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_id")
 }
 
