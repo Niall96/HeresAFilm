@@ -8,8 +8,8 @@ async function createReview(req, res) {
 
 async function deleteReview(req, res) {
   const { id } = req.params;
-  const deletedReview = await reviewsService.deleteReview(id);
-  res.status(200).json(deletedReview);
+  await reviewsService.deleteReview(id);
+  res.sendStatus(200);
 }
 
 module.exports = {
