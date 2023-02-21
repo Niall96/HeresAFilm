@@ -91,14 +91,14 @@ async function updateUser(req, res) {
   const { id } = req.params;
   const { emailAddress, username, dateOfBirth } = req.body;
   await usersService.updateUser(id, emailAddress, username, dateOfBirth);
-  res.status(200);
+  res.sendStatus(200);
 }
 
 async function updateUserFilm(req, res) {
   const { id, filmId } = req.params;
   const { watched, watchlist, favorite } = req.body;
   await usersService.updateUserFilms(id, filmId, watched, watchlist, favorite);
-  res.status(200);
+  res.sendStatus(200);
 }
 
 module.exports = {
