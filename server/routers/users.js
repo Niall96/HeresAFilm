@@ -381,7 +381,7 @@ Users.post(
 );
 /**
  * @swagger
- * /users/{id}/films:
+ * /users/{id}/films/{filmId}:
  *   patch:
  *     tags: [
  *       users
