@@ -381,7 +381,7 @@ Users.post(
 );
 /**
  * @swagger
- * /users/{userId}/films/{filmId}:
+ * /users/{id}/films:
  *   put:
  *     tags: [
  *       users
@@ -427,6 +427,6 @@ Users.post(
  *       204:
  *         description: No content
  */
-Users.put("/:userId(\\d+)/films/:filmId(\\d+)", UsersController.updateUserFilm);
+Users.put("/:id(\\d+)/films", UsersController.updateUserFilm);
 
 module.exports = Users;

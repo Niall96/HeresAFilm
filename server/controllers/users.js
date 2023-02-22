@@ -95,15 +95,9 @@ async function updateUser(req, res) {
 }
 
 async function updateUserFilm(req, res) {
-  const { userId, filmId } = req.params;
+  const { id } = req.params;
   const { watched, watchlist, favorite } = req.body;
-  await usersService.updateUserFilms(
-    userId,
-    filmId,
-    watched,
-    watchlist,
-    favorite
-  );
+  await usersService.updateUserFilms(id, watched, watchlist, favorite);
   res.sendStatus(200);
 }
 
