@@ -106,11 +106,17 @@ async function getUserFilms(filter) {
   });
 }
 
-async function updateUserFilms(id, filmId, watched, watchlist, favorite) {
-  return await prisma.user_films.updateMany({
+async function updateUserFilms(userId, filmId, watched, watchlist, favorite) {
+  return await prisma.user_films.update({
     where: {
-      user_id: parseInt(id),
-      film_id: parseInt(filmId),
+      AND: [
+        {
+          user_id: parseInt(userId),
+        },
+        {
+          film_id: parseInt(filmId),
+        },
+      ],
     },
     data: {
       watched: watched,
