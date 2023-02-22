@@ -107,7 +107,7 @@ async function getUserFilms(filter) {
 }
 
 async function updateUserFilms(id, filmId, watched, watchlist, favorite) {
-  return await prisma.user_films.update({
+  return await prisma.user_films.updateMany({
     where: {
       user_id: parseInt(id),
       film_id: parseInt(filmId),
