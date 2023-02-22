@@ -98,6 +98,7 @@ async function getUserFilms(filter) {
   return await prisma.user_films.findMany({
     where: filter,
     select: {
+      id: true,
       film_id: true,
       favorites: true,
       watched: true,
