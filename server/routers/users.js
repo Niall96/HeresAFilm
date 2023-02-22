@@ -427,6 +427,6 @@ Users.post(
  *       204:
  *         description: No content
  */
-Users.patch("//:userId(\\d+)//:filmId(\\d+)", UsersController.updateUserFilm);
+Users.put("//:userId(\\d+)//:filmId(\\d+)", UsersController.updateUserFilm);
 
 module.exports = Users;
